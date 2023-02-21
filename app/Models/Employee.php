@@ -20,6 +20,7 @@ class Employee extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
         'role',
         'status',
         'deleted_at'

@@ -23,32 +23,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
+        'phone_number',
         'status',
         'deleted_at'
     ];
 
     protected $dates = ['deleted_at'];
-
-    public function sarans()
-    {
-        return $this->hasMany(Saran::class, 'saran_id');
-    }
-
-    public function laporans()
-    {
-        return $this->hasMany(Laporan::class, 'user_id');
-    }
-
-    public function laporans_ditangani()
-    {
-        return $this->hasMany(Laporan::class, 'user_master_id');
-    }
-
-    public function jumlah_laporan_ditangani()
-    {
-        return Order::where('user_master_id',$this->id)->where('status','selesai')->get()->count();
-    }
 
     /**
      * The attributes that should be hidden for serialization.

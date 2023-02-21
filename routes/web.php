@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PegawaiController;
@@ -25,6 +26,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['prefix' => 'employee', 'as' => 'employee.'],function () {
+    Route::get('login', [LoginController::class, 'showEmployeeLoginForm']);
+    Route::post('login', [LoginController::class, 'employeeLogin'])->name('login');
+});
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->group(function(){
     

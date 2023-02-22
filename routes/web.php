@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SaranController;
 use App\Http\Controllers\UnitController;
@@ -26,6 +27,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('order-user', [OrderUserController::class, 'index'])->middleware('guest');
+Route::post('order-user', [OrderUserController::class, 'store'])->name('orderUser');
+
 Route::group(['prefix' => 'employee', 'as' => 'employee.'],function () {
     Route::get('login', [LoginController::class, 'showEmployeeLoginForm']);
     Route::post('login', [LoginController::class, 'employeeLogin'])->name('login');

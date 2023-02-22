@@ -1237,6 +1237,15 @@ section {
   background: #e82d2d;
 }
 
+.contact .form-select-lg {
+  font-size: 1rem;
+  border-radius: 0;
+}
+
+.contact .php-email-form .form-check-input{
+  padding: 0 0;
+}
+
 @-webkit-keyframes animate-loading {
   0% {
     transform: rotate(0deg);

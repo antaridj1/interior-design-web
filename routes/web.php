@@ -30,45 +30,47 @@ Auth::routes();
 
 Route::get('order-user', [OrderUserController::class, 'index'])->middleware('guest');
 Route::post('order-user', [OrderUserController::class, 'store'])->name('orderUser');
-
-Route::group(['prefix' => 'employee', 'as' => 'employee.'],function () {
-    Route::get('login', [LoginController::class, 'showEmployeeLoginForm']);
-    Route::post('login', [LoginController::class, 'employeeLogin'])->name('login');
+Route::middleware('auth:user')->group(function(){
+    Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
 });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::middleware('auth')->group(function(){
-    
-    Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
+Route::prefix('employee')->group(function(){
+    Route::get('login', [LoginController::class, 'showEmployeeLoginForm']);
+    Route::post('login', [LoginController::class, 'employeeLogin'])->name('employee.login');
 
-    Route::group(['prefix' => 'order', 'as' => 'order.'],function () {
-        Route::resource('/', OrderController::class)->parameters([
-            '' => 'order'
-        ]);
-        Route::get('/menu', [OrderController::class, 'menu'])->name('menu');
-        Route::patch('/{order}/verifikasi', [OrderController::class, 'verifikasi'])->name('verifikasi');
-        
-    });
+    Route::middleware('auth:employee')->group(function(){
+        Route::get('home', [HomeController::class, 'index'])->name('home');
+        Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
+        Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
 
-    Route::group(['prefix' => 'pegawai', 'as' => 'pegawai.'],function () {
-        Route::resource('/', PegawaiController::class)->parameters([
-            '' => 'pegawai'
-        ]);
-        Route::patch('/{pegawai}/update-status', [PegawaiController::class, 'update_status'])->name('updateStatus');
-    });
+        Route::group(['prefix' => 'order', 'as' => 'order.'],function () {
+            Route::resource('/', OrderController::class)->parameters([
+                '' => 'order'
+            ]);
+            Route::patch('/{order}/verifikasi', [OrderController::class, 'verifikasi'])->name('verifikasi');
+            
+        });
 
-    Route::group(['prefix' => 'unit', 'as' => 'unit.'],function () {
-        Route::resource('/', UnitController::class)->parameters([
-            '' => 'unit'
-        ]);
-        Route::patch('/{unit}/update-status', [UnitController::class, 'update_status'])->name('updateStatus');
-    });
+        Route::group(['prefix' => 'architect', 'as' => 'architect.'],function () {
+            Route::resource('/', ArchitectController::class)->parameters([
+                '' => 'architect'
+            ]);
+            Route::patch('/{architect}/update-status', [ArchitectController::class, 'update_status'])->name('updateStatus');
+        });
 
-    Route::group(['prefix' => 'saran', 'as' => 'saran.'],function () {
-        Route::resource('/', SaranController::class)->parameters([
-            '' => 'saran'
-        ]);
-    });
+        Route::group(['prefix' => 'user', 'as' => 'user.'],function () {
+            Route::resource('/', UserController::class)->parameters([
+                '' => 'user'
+            ]);
+            Route::patch('/{user}/update-status', [UserController::class, 'update_status'])->name('updateStatus');
+        });
+
+        Route::group(['prefix' => 'landing-page', 'as' => 'landingPage.'],function () {
+            Route::resource('/', LandingPageController::class)->parameters([
+                '' => 'landing-page'
+            ]);
+        });
    
+    });
 });

@@ -20,21 +20,21 @@ class EmployeeSeeder extends Seeder
                 'email' => 'arsitek1@gmail.com',
                 'password' => bcrypt('12345678'),
                 'phone_number'  => '089765456765',
-                'role' => 'architect'
+                'isAdmin' => false
             ],
             [
                 'name' => 'Arsitek B',
                 'email' => 'arsitek2@gmail.com',
                 'password' => bcrypt('12345678'),
                 'phone_number'  => '089765456765',
-                'role' => 'architect'
+                'isAdmin' => false
             ],
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('12345678'),
                 'phone_number'  => '089765456765',
-                'role' => 'admin'
+                'isAdmin' => true
             ],
            
         ];

@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone_number');
-            $table->string('role');
+            $table->boolean('isAdmin');
             $table->string('password');
             $table->boolean('status')->default(true);
             $table->rememberToken();

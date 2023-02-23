@@ -3,50 +3,40 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link {{Request::is('home') || Request::is('profile')? '' : 'collapsed'}}" href="{{route('home')}}">
+        <a class="nav-link {{Request::is('employee/home') || Request::is('employee/profile')? '' : 'collapsed'}}" href="{{route('home')}}">
           <i class="bi bi-house-door"></i>
           <span>Home</span>
         </a>
-      </li><!-- End Dashboard Nav -->
-      {{-- <li class="nav-item">
-        <a class="nav-link {{Route::is('laporan.edit', 'laporan.index', 'laporan.show')? '' : 'collapsed'}}" href="{{route('laporan.index')}}">
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {{Route::is('order.edit', 'order.index', 'order.show')? '' : 'collapsed'}}" href="{{route('order.index')}}">
           <i class="bi bi-journal-text"></i>
-          <span>Laporan</span>
-        </a>
-      </li><!-- End Dashboard Nav --> --}}
-
-{{--       
-          <li class="nav-item">
-            <a class="nav-link {{Route::is('laporan.create')? '' : 'collapsed'}}" href="{{route('laporan.create')}}">
-              <i class="bi bi-pencil"></i>
-              <span>Buat Laporan</span>
-            </a>
-        </li> --}}
-
-    
-      <li class="nav-item">
-        <a class="nav-link {{Route::is('pegawai.edit', 'pegawai.index', 'pegawai.create')? '' : 'collapsed'}}" href="{{route('pegawai.index')}}">
-          <i class="bi bi-people"></i>
-          <span>Pegawai</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link {{Route::is('unit.edit', 'unit.index', 'unit.create')? '' : 'collapsed'}}" href="{{route('unit.index')}}">
-          <i class="bi bi-bank"></i>
-          <span>Unit BRI</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-      
-
-    
-      <li class="nav-item">
-        <a class="nav-link {{Route::is('saran.index', 'saran.create')? '' : 'collapsed'}}" href="{{route('saran.index')}}">
-          <i class="bi bi bi-chat-left-text"></i>
-          <span>Saran</span>
+          <span>Order</span>
         </a>
       </li>
-    
+      @if(auth()->guard('employee')->user()->isAdmin == false)
+        <li class="nav-item">
+          <a class="nav-link {{Route::is('order.create')? '' : 'collapsed'}}" href="{{route('order.create')}}">
+            <i class="bi bi-pencil"></i>
+            <span>Create Order</span>
+          </a>
+        </li>
+      @else
+        <li class="nav-item">
+          <a class="nav-link {{Route::is('architect.edit', 'architect.index', 'architect.create')? '' : 'collapsed'}}" href="{{route('architect.index')}}">
+            <i class="bi bi-people"></i>
+            <span>Architect</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{Route::is('landingPage.edit', 'landingPage.index', 'landingPage.create')? '' : 'collapsed'}}" href="{{route('landingPage.index')}}">
+            <i class="bi bi-bank"></i>
+            <span>Landing Page</span>
+          </a>
+        </li>
+      @endif
 
     </ul>
 

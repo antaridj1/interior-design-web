@@ -13,6 +13,7 @@
                 @csrf
                 <div class="row">
                     <h2 class="text-center">Order</h2>
+                    <input type="hidden" value="" id="admin_phone">
                     <div class="form-group mt-3">
                         <label for="name" class="form-label">Nama</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="name" required>
@@ -134,13 +135,17 @@
       @include('layout.alert')
     @endif
   </main>
-<SCRipt>
-function kirimPesan(){
-    window.open('https://wa.me/'+phone+'/?text='+pesan_ambil , "_blank");
-}
-    
+  
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-    </SCRipt>
+<script>
+    function kirimPesan(){
+        var message = 'Halo, saya sudah mengirim formulir pemesanan design interior pada web. Link : '
+        var str = $('#admin_phone').val()
+        var phone = str.slice(1);
+        window.open('https://wa.me/'+phone+'/?text='+message , "_blank");
+    }
+</SCRipt>
 
 @endsection
     

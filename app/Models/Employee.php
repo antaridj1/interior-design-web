@@ -16,12 +16,14 @@ class Employee extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $guard = 'employee';
+    
     protected $fillable = [
         'name',
         'email',
         'password',
         'phone_number',
-        'role',
+        'isAdmin',
         'status',
         'deleted_at'
     ];

@@ -83,14 +83,43 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="type" class="form-label col-12">Style Interior Yang Anda Inginkan</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input mr-2" type="checkbox" id="inlineCheckbox1" value="1" name="interior_style_id">
-                            <label class="form-check-label" for="inlineCheckbox1"> Modern</label>
+                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+                            <label class="image-checkbox">
+                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
+                                <input type="checkbox" name="image[]" value="" />
+                                <i class="fa fa-check" style="display:none;"></i>
+                            </label>
+                           
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input mr-2" type="checkbox" id="inlineCheckbox2" value="2" name="interior_style_id">
-                            <label class="form-check-label" for="inlineCheckbox2"> Minimalis</label>
+                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+                            <label class="image-checkbox">
+                                <img class="img-responsive" src="{{asset('assets/img/minimalis.jpg')}}" />
+                                <input type="checkbox" name="image[]" value="" />
+                                <i class="fa fa-check" style="display:none;"></i>
+                            </label>
                         </div>
+                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+                            <label class="image-checkbox">
+                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
+                                <input type="checkbox" name="image[]" value="" />
+                                <i class="fa fa-check" style="display:none;"></i>
+                            </label>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+                            <label class="image-checkbox">
+                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
+                                <input type="checkbox" name="image[]" value="" />
+                                <i class="fa fa-check" style="display:none;"></i>
+                            </label>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
+                            <label class="image-checkbox">
+                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
+                                <input type="checkbox" name="image[]" value="" />
+                                <i class="fa fa-check" style="display:none;"></i>
+                            </label>
+                        </div>
+                       
                     </div>
                     <div class="form-group mt-3">
                         <label for="budget" class="form-label">Kisaran Budget</label>
@@ -145,7 +174,29 @@
         var phone = str.slice(1);
         window.open('https://wa.me/'+phone+'/?text='+message , "_blank");
     }
-</SCRipt>
+
+    // image gallery
+    // init the state from the input
+    $(".image-checkbox").each(function () {
+        if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+            $(this).addClass('image-checkbox-checked');
+            $(this).find('.fa').show();
+        }
+        else {
+            $(this).removeClass('image-checkbox-checked');
+            $(this).find('.fa').hide();
+        }
+    });
+
+    // sync the state to the input
+    $(".image-checkbox").on("click", function (e) {
+        $(this).toggleClass('image-checkbox-checked');
+        var $checkbox = $(this).find('input[type="checkbox"]');
+        $checkbox.prop("checked",!$checkbox.prop("checked"))
+
+        e.preventDefault();
+    });
+</script>
 
 @endsection
     

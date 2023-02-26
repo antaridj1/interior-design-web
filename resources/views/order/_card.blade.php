@@ -1,80 +1,80 @@
 
     <div class="card">
         <div class="card-header">
-        <div class="d-flex justify-content-between">
-            <span>{{$laporan->kategori}} | {{$laporan->converted_id}} | {{$laporan->created_at->format('d M Y')}}</span>
-            <span class="badge rounded-pill {{badge($laporan->status)}}">{{status($laporan->status)}}</span>
-        </div>
+            <div class="d-flex justify-content-between">
+                <span>{{$order->user->name}} ({{$order->user->phone_number}})</span>
+                <span class="badge rounded-pill {{$order->status_badge}}">{{$order->status_string}}</span>
+            </div>
         </div>
         <div class="card-body">
-        <h5 class="card-title">{{$laporan->judul}}</h5>
-        {{$laporan->detail}}
-        </div>
-        @if (auth()->user()->role === 'unit')
-        <div class="card-footer">
-            <div class="d-flex justify-content-between">
-                <p>Penanggungjawab : {{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</p>
-                    @if ($laporan->status == IS_TERKIRIM)
-                        <div>
-                            <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
-                            <i class="bi bi-trash-fill"></i>
-                            </button>
+            <table class="table table-borderless">
+                <tr>
+                    <td>Title</td>
+                    <td>: {{$order->title}}</td>
+                </tr>
+                <tr>
+                    <td>Lokasi</td>
+                    <td>: {{$order->location}}</td>
+                </tr>
+                <tr>
+                    <td>Kebutuhan</td>
+                    <td>: {{$order->needs}}</td>
+                </tr>
+                <tr>
+                    <td>Jenis Interior</td>
+                    <td>: {{$order->type}}</td>
+                </tr>
+                <tr>
+                    <td>Ukuran Ruangan</td>
+                    <td>: {{$order->room_size}}</td>
+                </tr>
+                <tr>
+                    <td>Style Interior</td>
+                    <td>: Modern, Minimalis</td>
+                </tr>
+                <tr>
+                    <td>Budget</td>
+                    <td>: {{$order->budget}}</td>
+                </tr>
+                <tr>
+                    <td>Bulan project dimulai</td>
+                    <td>: {{$order->formatted_started_month}}</td>
+                </tr>
+                <tr>
+                    <td>Detail</td>
+                    <td>: {{$order->detail}}</td>
+                </tr>
+                <tr>
+                    <td>Dealed Fee</td>
+                    <td>: {{$order->dealed_fee}}</td>
+                </tr>
+                <tr>
+                    <td>Progress</td>
+                    <td class="d-flex">
+                        <span>: </span>
+                        <div class="progress col-6 mt-1 ms-1">
+                            <div class="progress-bar" role="progressbar" style="width: {{$order->progress}}%" aria-valuenow="{{$order->progress}}" aria-valuemin="0" aria-valuemax="100">{{$order->progress}}</div>
                         </div>
-                        @include('layout.modal')
-                    @elseif($laporan->status == IS_DITOLAK)
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#alasanModal_{{$laporan->id}}">Lihat alasan ditolak</a>
-                        @include('layout.modal')
-                    @elseif($laporan->status == IS_SELESAI_DIPROSES)
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#verifiedModal_{{$laporan->id}}">
-                            Selesai
-                        </button>
-                        @include('layout.modal')
-                    @endif 
-            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Result</td>
+                    <td>: {{$order->results}}</td>
+                </tr>
+            </table>
         </div>
-        @elseif(auth()->user()->role === 'master_admin')
-            <div class="card-footer">
-            <div class="d-flex justify-content-between">
-                <div>
-                <p>Pengirim : {{$laporan->user->name}}</p>
-                <p>Penanggungjawab : {{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</p>
-                </div>
-                <div>
-                @if($laporan->status === IS_TERKIRIM)
-                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#tolakModal_{{$laporan->id}}">
-                        Tolak
-                    </button>
-                    @include('layout.modal')
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#terimaModal_{{$laporan->id}}">
-                        Terima
-                    </button>
-                    @include('laporan.modal')
-                @elseif($laporan->status === IS_DITOLAK)
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#alasanModal_{{$laporan->id}}">Lihat alasan ditolak</a>
-                    @include('layout.modal') 
-                @endif
-                </div>
-            </div>
-            </div>
-        @else
         <div class="card-footer">
             <div class="d-flex justify-content-between">
-            <p>Pengirim : {{$laporan->user->name}}</p>
-            <div>
-                @if($laporan->status == IS_DITERIMA)
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#prosesModal_{{$laporan->id}}">
-                    Proses Sekarang
-                </button>
-                @elseif($laporan->status == IS_DIPROSES)
-                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#unverifiedModal_{{$laporan->id}}">
-                    Selesai
-                </button>
-                @endif
-                @include('layout.modal')
-            </div>
+                <p>Architect : {{$order->architect->name}}</p>
+                <div>
+                    <a href="{{route('order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </div>
+                @include('order._modal')
             </div>
         </div>
-        @endif
-    
-    </div><!-- End Card with header and footer -->
+    </div>

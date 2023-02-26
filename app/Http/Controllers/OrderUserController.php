@@ -47,6 +47,7 @@ class OrderUserController extends Controller
         ]);
         Order::create([
             'user_id' => $user->id,
+            'employee_id' => 1,
             'type' => $request->type,
             'isRenovation' => $request->isRenovation,
             'needs' => $request->needs,

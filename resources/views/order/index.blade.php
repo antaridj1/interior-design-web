@@ -7,11 +7,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">   
-        <h1>Laporan</h1>
+        <h1>Order</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Laporan</li>
+            <li class="breadcrumb-item active">Order</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -30,9 +30,9 @@
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Laporan <span>| Per 2022</span></h5>
+                    <h5 class="card-title">Order <span>| Per 2023</span></h5>
                   </div>
-                 @include('laporan._table')
+                 @include('order._table')
                 </div>
 
               </div>

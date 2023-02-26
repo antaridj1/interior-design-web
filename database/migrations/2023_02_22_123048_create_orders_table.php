@@ -27,7 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string('budget')->nullable();
             $table->date('started_month');
             $table->text('detail')->nullable();
-            $table->string('progress')->nullable();
+            $table->string('progress')->default(0);
             $table->string('results')->nullable();
             $table->integer('dealed_fee')->nullable();
             $table->tinyInteger('status')->default(0);

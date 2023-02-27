@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\StyleInterior;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class OrderUserController extends Controller
      */
     public function index()
     {
-        return view('order');
+        $styles = StyleInterior::all();
+        return view('order', compact('styles'));
     }
 
     /**
@@ -52,7 +54,7 @@ class OrderUserController extends Controller
             'needs' => $request->needs,
             'location' => $request->location,
             'room_size' => $request->room_size,
-            'interior_style_id' => $request->interior_style_id,
+            'style_interior_id' => $request->style_interior_id,
             'budget' => $request->budget,
             'started_month' => $month,
             'detail' => $request->detail

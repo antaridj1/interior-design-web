@@ -18,7 +18,7 @@ class Order extends Model
         'isRenovation',
         'needs',
         'room_size',
-        'interior_style_id',
+        'style_interior_id',
         'budget',
         'started_month',
         'detail',

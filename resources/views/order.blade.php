@@ -83,42 +83,25 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="type" class="form-label col-12">Style Interior Yang Anda Inginkan</label>
-                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-                            <label class="image-checkbox">
-                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
-                                <input type="checkbox" name="image[]" value="" />
-                                <i class="fa fa-check" style="display:none;"></i>
-                            </label>
-                           
+
+                        <div class="row portfolio portfolio-container" data-aos="fade-up" data-aos-delay="150">
+                            @foreach ($styles as $style)
+                                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                                    <label class="image-checkbox">
+                                        <img src="{{asset('assets/img/modern.jpg')}}" class="img-fluid" alt="">
+                                        <input type="checkbox" name="style_interior_id[]" value="{{$style->id}}" />
+                                        <i class="fa fa-check" style="display:none;"></i>
+                                        <div class="portfolio-info">
+                                            <h4>{{$style->name}}</h4>
+                                            <p>{{$style->description}}</p>
+                                            <a href="{{asset('assets/img/modern.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{$style->name}}"><i class="bx bx-plus"></i></a>
+                                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-                            <label class="image-checkbox">
-                                <img class="img-responsive" src="{{asset('assets/img/minimalis.jpg')}}" />
-                                <input type="checkbox" name="image[]" value="" />
-                                <i class="fa fa-check" style="display:none;"></i>
-                            </label>
-                        </div>
-                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-                            <label class="image-checkbox">
-                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
-                                <input type="checkbox" name="image[]" value="" />
-                                <i class="fa fa-check" style="display:none;"></i>
-                            </label>
-                        </div>
-                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-                            <label class="image-checkbox">
-                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
-                                <input type="checkbox" name="image[]" value="" />
-                                <i class="fa fa-check" style="display:none;"></i>
-                            </label>
-                        </div>
-                        <div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-                            <label class="image-checkbox">
-                                <img class="img-responsive" src="{{asset('assets/img/modern.jpg')}}" />
-                                <input type="checkbox" name="image[]" value="" />
-                                <i class="fa fa-check" style="display:none;"></i>
-                            </label>
-                        </div>
+                        <input type="file" class="dropify" data-height="300" />
                        
                     </div>
                     <div class="form-group mt-3">
@@ -166,8 +149,12 @@
   </main>
   
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 
 <script>
+    $('.dropify').dropify();
     function kirimPesan(){
         var message = 'Halo, saya sudah mengirim formulir pemesanan design interior pada web. Link : '
         var str = $('#admin_phone').val()
@@ -175,8 +162,6 @@
         window.open('https://wa.me/'+phone+'/?text='+message , "_blank");
     }
 
-    // image gallery
-    // init the state from the input
     $(".image-checkbox").each(function () {
         if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
             $(this).addClass('image-checkbox-checked');

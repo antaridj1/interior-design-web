@@ -818,6 +818,11 @@ section {
   margin-bottom: 30px;
 }
 
+.portfolio .portfolio-item img{
+  min-width: 325px;
+  cursor: pointer;
+}
+
 .portfolio .portfolio-item .portfolio-info {
   opacity: 0;
   position: absolute;

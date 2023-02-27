@@ -1,48 +1,40 @@
  <table class="table table-borderless datatable">
     <thead>
-    <tr>
-        <th class="text-center" scope="col">ID</th>
-        <th class="text-center" scope="col">Kategori</th>
-        <th scope="col">Judul</th>
-        <th class="text-center" scope="col">Status</th>
-        @if (auth()->user()->role === 'master_admin' || auth()->user()->role === 'pegawai')
-            <th class="text-center" scope="col">Pengirim</th>
-        @endif
-        <th class="text-center" scope="col">Penanggungjawab</th>
-        <th class="text-center" scope="col">Aksi</th>
-    </tr>
+        <tr class="text-center">
+            <th class="text-center">No.</th>
+            <th class="text-center">Nama Client</th>
+            <th class="text-center">Telepon</th>
+            <th class="text-center">Jenis Interior</th>
+            <th class="text-center">Bulan Mulai</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Aksi</th>
+        </tr>
     </thead>
     <tbody>
-    @forelse ($laporans as $laporan)
-        <tr>
-            <th class="text-center" scope="row">{{$laporan->converted_id}}</th>
-            <td class="text-center">{{$laporan->kategori}}</td>
-            <td>{{$laporan->judul}}</td>
+    @forelse ($orders as $order)
+        <tr class="text-center">
+            <td>{{$loop->iteration}}</td>
+            <td>{{$order->user->name}}</td>
+            <td>{{$order->user->phone_number}}</td>
+            <td>{{$order->type}}</td> 
+            <td>{{$order->formatted_started_month}}</td>
+            <td> <span class="badge rounded-pill {{$order->status_badge}}">{{$order->status_string}}</span></td>
             <td class="text-center">
-                <span class="badge {{badge($laporan->status)}} ">{{status($laporan->status)}}</span>
-            </td>
-            @if (auth()->user()->role === 'unit')
-                <td class="text-center">{{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</td>
-                <td class="text-center">
-                <a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>
-                @if ($laporan->status == IS_TERKIRIM)
-                    <a href="{{route('laporan.edit',$laporan->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$laporan->id}}">
+                <a href="{{route('order.show',$order->id)}}" class="btn btn-sm btn-outline-info">
+                    <i class="bi bi-info-circle-fill"></i>
+                </a>
+                <a href="{{route('order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">
                     <i class="bi bi-trash-fill"></i>
-                    </button>
-                @endif
-                @include('layout.modal')
-                </td>
-            @else
-                <td class="text-center">{{$laporan->user->name}}</td>
-                <td class="text-center">{{($laporan->penanggungjawab)? $laporan->penanggungjawab->name : '-'}}</td>
-                <td class="text-center"><a href="{{route('laporan.show',$laporan->id)}}" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle-fill"></i></a></td>
-            @endif
-        
+                </button>
+                @include('order._modal')
+            </td>
         </tr>
     @empty
         <tr>
-            <td>Tidak ada data</td>
+            <td colspan="6" class="text-center">Tidak ada data</td>
         </tr>
     @endforelse
     </tbody>

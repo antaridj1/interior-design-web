@@ -28,4 +28,9 @@ class Employee extends Authenticatable
         'deleted_at'
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'employee_id');
+    }
+
 }

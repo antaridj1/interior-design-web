@@ -43,22 +43,19 @@
           </div> --}}
           <div class="row">
             <!-- Terkirim -->
-            <div class="col-4">
+            <div class="col-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                
-                      <h5 class="card-title">Laporan Masuk <span>| Per 2022</span></h5>
-                
-                 
+                  <h5 class="card-title">On Going Project <span>| Per 2023</span></h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cursor"></i>
+                      <i class="bi bi-arrow-repeat "></i>
                     </div>
                     <div class="ps-3">
-                   
-                        <h6></h6>
+                      
+                        <h6>{{$jumlah_diproses}}</h6>
                     
-                      <span class="text-muted small pt-2 ps-1">laporan</span>
+                      <span class="text-muted small pt-2 ps-1">Project</span>
                     </div>
                   </div>
                 </div>
@@ -66,51 +63,33 @@
               </div>
             </div><!-- End Terkirim -->
             <!-- Diproses -->
-            <div class="col-4">
+            <div class="col-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">Diproses <span>| Per 2022</span></h5>
+                  <h5 class="card-title">Project Selesai <span> | Per 2023</span></h5>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-arrow-repeat"></i>
+                      <i class="bi bi bi-check"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>h</h6>
-                      <span class="text-muted small pt-2 ps-1">laporan</span>
+                      <h6>{{$jumlah_selesai}}</h6>
+                      <span class="text-muted small pt-2 ps-1">Project</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div><!-- End Diproses -->
-            <!-- Selesai -->
-            <div class="col-4">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">Tuntas<span> | Per 2022</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-check"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6></h6>
-                      <span class="text-muted small pt-2 ps-1">laporan</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Selesai -->
-          </div>
-          
-         
+
             <div class="row">
               <!-- Recent Sales -->
               <div class="col-12">
                 <div class="d-flex justify-content-between">
-                  <h5 class="card-title">Laporan Terakhir <span>| Per 2022</span></h5>
+                  <h5 class="card-title">Project Terakhir <span> | Per 2023</span></h5>
                   <div class="mt-3">
                     <a href="" class="btn btn-primary btn-sm">Lihat Semua</a>
                   </div>
                 </div>
+                @include('order._card')
                
               </div><!-- End Recent Sales -->
             </div>

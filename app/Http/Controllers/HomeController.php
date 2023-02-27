@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laporan;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,8 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         // $jumlah_terkirim = Laporan::where('status', IS_TERKIRIM)->count();
-        // $jumlah_diproses = Laporan::where('status', IS_DIPROSES)->count();
-        // $jumlah_selesai = Laporan::where('status', IS_TUNTAS)->count();
+        $jumlah_diproses = Order::where('status', 1)->count();
+        $jumlah_selesai = Order::where('status', 2)->count();
+        $order = Order::where('employee_id',Auth::id())->latest()->take(1)->first();
+
         // $jumlah_selesai_diproses = Laporan::where('status', IS_SELESAI_DIPROSES)->count();
 
         // if(Auth::user()->role === 'unit'){
@@ -45,6 +48,6 @@ class HomeController extends Controller
         // }
         
 
-        return view('home');
+        return view('home', compact('jumlah_diproses', 'jumlah_selesai','order'));
     }
 }

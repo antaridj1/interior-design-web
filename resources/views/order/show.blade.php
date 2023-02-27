@@ -7,12 +7,12 @@
 
 <main id="main" class="main">
     <div class="pagetitle">   
-        <h1>Laporan</h1>
+        <h1>Detail Order</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('laporan.index')}}">Laporan</a></li>
-            <li class="breadcrumb-item active">Detail Laporan</li>
+            <li class="breadcrumb-item"><a href="{{route('order.index')}}">Order</a></li>
+            <li class="breadcrumb-item active">Detail Order</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -25,7 +25,7 @@
             <div class="row">
                 <!-- Recent Sales -->
                 <div class="col-12"> 
-                   @include('laporan._card')
+                   @include('order._card')
                 </div><!-- End Recent Sales -->
             </div>
       </div>

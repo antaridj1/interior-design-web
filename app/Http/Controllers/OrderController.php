@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -18,8 +20,8 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        
-            return view('order.index');
+        $orders = Order::all();
+        return view('order.index', compact('orders'));
     }
 
     /**
@@ -41,22 +43,30 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kategori' => 'required',
-            'judul' => 'required',
-            'detail' => 'required',
+        $month = Carbon::parse($request->started_month)->toDateString();
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => Str::random(8),
         ]);
-
         Order::create([
-            'kategori' => $request->kategori,
-            'judul' => $request->judul,
-            'detail' => $request->detail,
-            'user_id' => Auth::id()
+            'user_id' => $user->id,
+            'employee_id' => 1,
+            'type' => $request->type,
+            'isRenovation' => $request->isRenovation,
+            'needs' => $request->needs,
+            'location' => $request->location,
+            'room_size' => $request->room_size,
+            'interior_style_id' => $request->interior_style_id,
+            'budget' => $request->budget,
+            'started_month' => $month,
+            'detail' => $request->detail
         ]);
 
-        return redirect('order')
-            ->with('status','success')
-            ->with('message','order berhasil terkirim');
+        return redirect('employee/order')
+        ->with('status','success')
+        ->with('message','Order telah dibuat');
     }
 
     /**
@@ -66,9 +76,9 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $pegawais = User::where('role','pegawai')->get();
+    {   
         $order = Order::find($id);
-        return view('order.show',compact('order','pegawais'));
+        return view('order.show',compact('order'));
     }
 
     /**

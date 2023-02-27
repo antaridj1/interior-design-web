@@ -42,9 +42,26 @@
             </div>
           </div> --}}
           <div class="row">
-            <!-- Terkirim -->
-            <div class="col-6">
-              <div class="card info-card sales-card">
+            @if (role('admin'))
+              <div class="col-4">
+                <div class="card info-card sales-card">
+                  <div class="card-body">
+                    <h5 class="card-title">Project Masuk <span> | Per 2023</span></h5>
+                    <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi bi-send"></i>
+                      </div>
+                      <div class="ps-3">
+                        <h6>{{$jumlah_masuk}}</h6>
+                        <span class="text-muted small pt-2 ps-1">Project</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif
+            <div class="{{(role('admin'))? 'col-4' : 'col-6'}}">
+              <div class="card info-card customers-card">
                 <div class="card-body">
                   <h5 class="card-title">On Going Project <span>| Per 2023</span></h5>
                   <div class="d-flex align-items-center">
@@ -63,8 +80,8 @@
               </div>
             </div><!-- End Terkirim -->
             <!-- Diproses -->
-            <div class="col-6">
-              <div class="card info-card sales-card">
+            <div class="{{(role('admin'))? 'col-4' : 'col-6'}}">
+              <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title">Project Selesai <span> | Per 2023</span></h5>
                   <div class="d-flex align-items-center">
@@ -78,11 +95,22 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End Diproses -->
+            </div>
+          </div>
 
-            <div class="row">
-              <!-- Recent Sales -->
-              <div class="col-12">
+          <div class="row">
+            <!-- Recent Sales -->
+            <div class="col-12"> 
+              @if (role('admin'))
+                <div class="card recent-sales overflow-auto">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title">Order <span>| Hari Ini</span></h5>
+                    </div>
+                    @include('order._table')
+                  </div>
+                </div>
+              @else
                 <div class="d-flex justify-content-between">
                   <h5 class="card-title">Project Terakhir <span> | Per 2023</span></h5>
                   <div class="mt-3">
@@ -90,11 +118,9 @@
                   </div>
                 </div>
                 @include('order._card')
-               
-              </div><!-- End Recent Sales -->
+              @endif
             </div>
-           
-      </div>
+          </div>
     </section>
 
   </main><!-- End #main -->

@@ -24,6 +24,10 @@ class CreateEmployeesTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::table('employees', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**

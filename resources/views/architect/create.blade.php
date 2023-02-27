@@ -7,11 +7,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Tambah Pegawai</h1>
+        <h1>Tambah Architect</h1>
         <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('pegawai.index')}}">Pegawai</a></li>
-            <li class="breadcrumb-item active">Tambah Pegawai</li>
+            <li class="breadcrumb-item"><a href="{{route('architect.index')}}">Architect</a></li>
+            <li class="breadcrumb-item active">Tambah Architect</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,15 +23,15 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Form Pegawai</h5>
+              <h5 class="card-title">Form Architect</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('pegawai.store')}}" class="row g-3">
+              <form method="post" action="{{route('architect.store')}}" class="row g-3">
                 @csrf
                 <div class="col-12">
                   <div class="form-floating">
-                    <input class="form-control @error('name') is-invalid @enderror" name="name" id="floatingPerihal" value="{{ @old('name') }}" required>
-                    <label for="floatingPerihal">Nama</label>
+                    <input class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ @old('name') }}" required>
+                    <label for="name">Nama</label>
                     @error('name')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -40,9 +40,20 @@
                   </div>
                 </div>
                 <div class="col-12">
+                  <div class="form-floating">
+                    <input class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" id="phone_number" value="{{ @old('phone_number') }}" required>
+                    <label for="phone_number">No Telp</label>
+                    @error('phone_number')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="col-12">
                     <div class="form-floating">
-                      <input class="form-control @error('email') is-invalid @enderror" name="email" id="floatingPerihal" value="{{ @old('email') }}" required>
-                      <label for="floatingPerihal">Email</label>
+                      <input class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ @old('email') }}" required>
+                      <label for="email">Email</label>
                       @error('email')
                           <div class="invalid-feedback">
                               {{$message}}
@@ -52,8 +63,8 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                      <input class="form-control @error('password') is-invalid @enderror" name="password" id="floatingPerihal" value="{{ @old('password') }}">
-                      <label for="floatingPerihal">Password</label>
+                      <input class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="{{ @old('password') }}">
+                      <label for="password">Password</label>
                       @error('password')
                           <div class="invalid-feedback">
                               {{$message}}

@@ -149,12 +149,8 @@
   </main>
   
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 
 <script>
-    $('.dropify').dropify();
     function kirimPesan(){
         var message = 'Halo, saya sudah mengirim formulir pemesanan design interior pada web. Link : '
         var str = $('#admin_phone').val()

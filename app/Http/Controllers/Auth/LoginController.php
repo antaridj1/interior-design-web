@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,5 +40,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:employee')->except('logout');
+    }
+
+    public function showEmployeeLoginForm()
+    {
+        return view('auth.employee.login');
+    }
+
+    public function employeeLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('employee')->attempt($request->only(['email','password']), $request->get('remember'))){
+            return redirect()->intended('/employee/home');
+        }
+
+        return back()->withInput($request->only('email', 'remember'));
     }
 }

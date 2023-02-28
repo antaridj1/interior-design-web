@@ -15,7 +15,7 @@
           <span>Order</span>
         </a>
       </li>
-      @if(auth()->guard('employee')->user()->isAdmin == false)
+      @if(role('architect'))
         <li class="nav-item">
           <a class="nav-link {{Route::is('order.create')? '' : 'collapsed'}}" href="{{route('order.create')}}">
             <i class="bi bi-pencil"></i>
@@ -23,6 +23,12 @@
           </a>
         </li>
       @else
+        <li class="nav-item">
+          <a class="nav-link {{Route::is('styleInterior.edit', 'styleInterior.index', 'styleInterior.create')? '' : 'collapsed'}}" href="{{route('styleInterior.index')}}">
+            <i class="bi bi-people"></i>
+            <span>Style SInterior</span>
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link {{Route::is('architect.edit', 'architect.index', 'architect.create')? '' : 'collapsed'}}" href="{{route('architect.index')}}">
             <i class="bi bi-people"></i>

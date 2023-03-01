@@ -40,4 +40,8 @@ class HomeController extends Controller
             return view('home', compact('jumlah_diproses', 'jumlah_selesai','order'));
         }
     }
+
+    public function indexUser(){
+        return view('home-user');
+    }
 }

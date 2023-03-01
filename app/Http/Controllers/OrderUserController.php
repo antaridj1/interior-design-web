@@ -40,6 +40,16 @@ class OrderUserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'type' => 'required',
+            'isRenovation' => 'required',
+            'needs' => 'required',
+            'location' => 'required',
+            'started_month' => 'required',
+        ]);
+
         $month = Carbon::parse($request->started_month)->toDateString();
         $user = User::create([
             'name' => $request->name,

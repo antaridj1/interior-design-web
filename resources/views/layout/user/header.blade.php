@@ -17,11 +17,20 @@
           @auth
             <li class="dropdown"><a href="#"><span>Hi, {{auth()->user()->name}}</span><i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li><a href="#">Account</a></li>
+                <li><a href="{{route('project.index')}}">My Project</a></li>
                 <li><a href="#">Edit Account</a></li>
-                <li><a href="#">Logout</a></li>
+                <li>
+                  <a  href="{{ route('logout') }}" 
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                      Logout
+                  </a>
+                </li>
               </ul>
             </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
           @endauth
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

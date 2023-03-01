@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderUserController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StyleInteriorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -20,16 +21,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
+    return view('landing-page');
+});
+
+Route::get('/home', function () {
     return view('landing-page');
 });
 
 Auth::routes();
 
-Route::get('order-user', [OrderUserController::class, 'index'])->middleware('guest');
+Route::get('order-user', [OrderUserController::class, 'index']);
 Route::post('order-user', [OrderUserController::class, 'store'])->name('orderUser');
-Route::middleware('auth:user')->group(function(){
+Route::middleware('auth:web')->group(function(){
+    Route::get('project', [ProjectController::class, 'index'])->name('project.index');
     Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
 });

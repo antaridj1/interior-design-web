@@ -126,15 +126,58 @@
                       @enderror
                   </div>
                   <div class="form-group mt-3">
-                      <label for="detail" class="form-label">Detail Mengenai Interior</label>
-                      <textarea type="textarea" rows="3" name="detail" class="form-control @error('detail') is-invalid @enderror" id="detail">{{$order->detail}}</textarea>
-                      @error('detail')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
+                    <label for="detail" class="form-label">Detail Mengenai Interior</label>
+                    <textarea type="textarea" rows="3" name="detail" class="form-control @error('detail') is-invalid @enderror" id="detail">{{$order->detail}}</textarea>
+                    @error('detail')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                   </div>
+                  <div class="form-group mt-3">
+                    <label for="employee_id" class="form-label">Architect</label>
+                    <select class="form-select" aria-label="Default select example" name="employee_id">
+                        <option value="1">Architect 1 (Tersedia)</option>
+                        <option value="2">Architect 2 (Tidak Tersedia)</option>
+                    </select>
+                </div>
+                  <div class="form-group mt-3">
+                    <label for="dealed_fee" class="form-label">Dealed Fee (Rp)</label>
+                    <input type="text" name="dealed_fee" class="form-control @error('dealed_fee') is-invalid @enderror" value="{{ $order->dealed_fee }}" id="dealed_fee" required>
+                    @error('dealed_fee')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group mt-3">
+                    <label for="progress" class="form-label">Progress</label>
+                    <input type="number" name="progress" class="form-control @error('progress') is-invalid @enderror" value="{{ $order->progress }}" id="progress" required>
+                    @error('progress')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group mt-3">
+                    <label for="results" class="form-label">Results</label>
+                    <input type="file" id="image" class="dropify" data-height="300" name="image" data-default-file="{{$order->results}}" data-max-file-size="3M" data-allowed-file-extensions="jpg png jpeg" data-show-errors="true" multiple/>
+                    @error('results')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
               </div>
+              <div class="form-group mt-3">
+                <label for="documents" class="form-label">More Documents (Link Goodle Drive)</label>
+                <input type="text" name="documents" class="form-control @error('documents') is-invalid @enderror" value="{{$order->documents}}" id="documents">
+                @error('documents')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
@@ -146,4 +189,13 @@
       </div>
     </section>
   </main><!-- End #main -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+
+<script>
+  $('.dropify').dropify();
+</script>
   @endsection

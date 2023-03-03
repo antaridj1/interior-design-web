@@ -101,19 +101,30 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $request->validate([
-            'kategori' => 'required',
-            'judul' => 'required',
-            'detail' => 'required',
+        $month = Carbon::parse($request->started_month)->toDateString();
+        User::where('id',$order->user_id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => Str::random(8),
         ]);
 
         $order->update([
-            'kategori' => $request->kategori,
-            'judul' => $request->judul,
+            'employee_id' => 1,
+            'type' => $request->type,
+            'isRenovation' => $request->isRenovation,
+            'needs' => $request->needs,
+            'location' => $request->location,
+            'room_size' => $request->room_size,
+            'interior_style_id' => $request->interior_style_id,
+            'budget' => $request->budget,
+            'started_month' => $month,
             'detail' => $request->detail,
+            'progress' => $request->progress,
+            'dealed_fee' => $request->dealed_fee,
         ]);
 
-        return redirect('order')
+        return redirect('employee/order')
             ->with('status','success')
             ->with('message','order berhasil terupdate');
     }

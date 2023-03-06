@@ -7,6 +7,7 @@ use App\Models\StyleInterior;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class OrderUserController extends Controller
@@ -16,6 +17,18 @@ class OrderUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+        if (Auth::user() === null){
+            return redirect('login')
+                ->with('auth', 'warning')
+                ->with('message','Anda harus login terlebih dahulu');
+        }
+
+    }
+
     public function index()
     {
         $styles = StyleInterior::all();
@@ -42,7 +55,7 @@ class OrderUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users|email',
+            'email' => 'required|email',
             'type' => 'required',
             'isRenovation' => 'required',
             'needs' => 'required',
@@ -51,14 +64,23 @@ class OrderUserController extends Controller
         ]);
 
         $month = Carbon::parse($request->started_month)->toDateString();
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Str::random(8),
-        ]);
+
+        $users = User::where('email', $request->email);
+
+        if($users->count() > 0){
+            $user_id = $users->value('id');
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'password' => Str::random(8),
+            ]);
+            $user_id = $user->id;
+        }
+
         Order::create([
-            'user_id' => $user->id,
+            'user_id' => $user_id,
             'employee_id' => 1,
             'type' => $request->type,
             'isRenovation' => $request->isRenovation,

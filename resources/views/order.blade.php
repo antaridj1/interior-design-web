@@ -12,35 +12,8 @@
                 <form method="POST" action="{{ route('orderUser') }}" role="form" class="php-email-form">
                 @csrf
                 <div class="row">
-                    <h2 class="text-center">Order</h2>
+                    <h2 class="text-center">Formulir Order</h2>
                     <input type="hidden" value="" id="admin_phone">
-                    <div class="form-group mt-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="name" required>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="yourEmail" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="yourEmail" required>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="phone_number" class="form-label">No Telepon (Whatsapp)</label>
-                        <input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number') }}" id="phone_number" required>
-                        @error('phone_number')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
                     <div class="form-group mt-3">
                         <label for="location" class="form-label">Lokasi</label>
                         <input type="text" name="location" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') }}" id="location" required>
@@ -89,7 +62,7 @@
                                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                                     <label class="image-checkbox">
                                         <img src="{{asset('assets/img/modern.jpg')}}" class="img-fluid" alt="">
-                                        <input type="checkbox" name="style_interior_id[]" value="{{$style->id}}" />
+                                        <input type="checkbox" name="style_interior_id" value="{{$style->id}}" />
                                         <i class="fa fa-check" style="display:none;"></i>
                                         <div class="portfolio-info">
                                             <h4>{{$style->name}}</h4>

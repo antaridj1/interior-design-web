@@ -31,9 +31,9 @@ Route::get('/home', function () {
 
 Auth::routes();
 
-Route::get('order-user', [OrderUserController::class, 'index']);
-Route::post('order-user', [OrderUserController::class, 'store'])->name('orderUser');
 Route::middleware('auth:web')->group(function(){
+    Route::get('order-user', [OrderUserController::class, 'index']);
+    Route::post('order-user', [OrderUserController::class, 'store'])->name('orderUser');
     Route::get('project', [ProjectController::class, 'index'])->name('project.index');
     Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('profile', [UserController::class, 'update'])->name('profile.update');

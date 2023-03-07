@@ -27,104 +27,66 @@
               <h5 class="card-title">Form Order</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('order.update', $order->id)}}" class="row g-3">
+              <form method="post" action="{{route('order.update', $order->id)}}" class="row g-3" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <div class="row">
-                  <div class="form-group mt-3">
-                      <label for="name" class="form-label">Nama</label>
-                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{$order->user->name}}" id="name" required>
-                      @error('name')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="yourEmail" class="form-label">Email</label>
-                      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$order->user->email}}" id="yourEmail" required>
-                      @error('email')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="phone_number" class="form-label">No Telepon (Whatsapp)</label>
-                      <input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ $order->user->phone_number }}" id="phone_number" required>
-                      @error('phone_number')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="location" class="form-label">Lokasi</label>
-                      <input type="text" name="location" class="form-control @error('location') is-invalid @enderror" value="{{ $order->location }}" id="location" required>
-                      @error('location')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="needs" class="form-label">Apa Kebutuhan Anda?</label>
-                      <select class="form-select" aria-label="Default select example" name="needs">
-                          <option value="design_build">Desain dan Bangunan</option>
-                          <option value="design_only">Desain Saja</option>
-                          <option value="build_only">Bangunan Saja</option>
-                      </select>
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="isRenovation" class="form-label">Kategori Kebutuhan Anda</label>
-                      <select class="form-select" aria-label="Default select example" name="isRenovation">
-                          <option value="false">Bangunan Baru</option>
-                          <option value="true">Renovasi</option>
-                      </select>
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="type" class="form-label">Tipe Bangunan</label>
-                      <select class="form-select" aria-label="Default select example" name="type">
-                          <option value="rumah">Rumah</option>
-                          <option value="apartemen">Apartemen</option>
-                      </select>
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="room_size" class="form-label">Ukuran Ruangan</label>
-                      <input type="text" name="room_size" class="form-control @error('room_size') is-invalid @enderror" value="{{$order->room_size}}" id="room_size">
-                      @error('room_size')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="type" class="form-label col-12">Style Interior Yang Anda Inginkan</label>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input mr-2" type="checkbox" id="inlineCheckbox1" value="1" name="interior_style_id">
-                          <label class="form-check-label" for="inlineCheckbox1"> Modern</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input class="form-check-input mr-2" type="checkbox" id="inlineCheckbox2" value="2" name="interior_style_id">
-                          <label class="form-check-label" for="inlineCheckbox2"> Minimalis</label>
-                      </div>
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="budget" class="form-label">Kisaran Budget</label>
-                      <select class="form-select" aria-label="Default select example" name="budget">
-                          <option value="10-20 juta">10-20 juta</option>
-                          <option value="20-30 juta">20-30 juta</option>
-                      </select>
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="started_month" class="form-label">Kapan Proyek Dimulai</label>
-                      <input type="month" name="started_month" class="form-control @error('started_month') is-invalid @enderror" value="{{ old('started_month') }}" id="started_month">
-                      @error('started_month')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
+                    <div class="col-6">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>: {{$order->user->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>: {{$order->user->email}}</td>
+                                </tr>
+                                <tr>
+                                    <td>No Telp</td>
+                                    <td>: {{$order->user->phone_number}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Lokasi</td>
+                                    <td>: {{$order->location}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ukuran Ruangan</td>
+                                    <td>: {{$order->room_size}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Kebutuhan</td>
+                                    <td>: {{$order->needs_string}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis Interior</td>
+                                    <td>: {{$order->type}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Style Interior</td>
+                                    <td>: Modern, Minimalis</td>
+                                </tr>
+                                <tr>
+                                    <td>Budget</td>
+                                    <td>: {{$order->budget}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bulan project dimulai</td>
+                                    <td>: {{$order->formatted_started_month}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <hr>
+                <div class="row">
                   <div class="form-group mt-3">
                     <label for="detail" class="form-label">Detail Mengenai Interior</label>
                     <textarea type="textarea" rows="3" name="detail" class="form-control @error('detail') is-invalid @enderror" id="detail">{{$order->detail}}</textarea>
@@ -151,7 +113,15 @@
                     @enderror
                 </div>
                 <div class="form-group mt-3">
-                    <label for="progress" class="form-label">Progress</label>
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" aria-label="Default select example" name="status">
+                        <option {{$order->status === 0 ? 'selected' : ''}} value="0">Pending</option>
+                        <option {{$order->status === 1 ? 'selected' : ''}} value="1">On Going</option>
+                        <option {{$order->status === 2 ? 'selected' : ''}} value="2">Done</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="progress" class="form-label">Progress (%)</label>
                     <input type="number" name="progress" class="form-control @error('progress') is-invalid @enderror" value="{{ $order->progress }}" id="progress" required>
                     @error('progress')
                         <span class="invalid-feedback" role="alert">
@@ -161,7 +131,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="results" class="form-label">Results</label>
-                    <input type="file" id="image" class="dropify" data-height="300" name="image" data-default-file="{{$order->results}}" data-max-file-size="3M" data-allowed-file-extensions="jpg png jpeg" data-show-errors="true" multiple/>
+                    <input type="file" id="results" class="dropify" data-height="300" name="results" data-default-file="{{ asset('storage/'.$order->results) }}" data-max-file-size="3M" data-allowed-file-extensions="jpg png jpeg" data-show-errors="true" multiple/>
                     @error('results')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -170,7 +140,7 @@
                 </div>
               </div>
               <div class="form-group mt-3">
-                <label for="documents" class="form-label">More Documents (Link Goodle Drive)</label>
+                <label for="documents" class="form-label">More Documents (Link Google Drive)</label>
                 <input type="text" name="documents" class="form-control @error('documents') is-invalid @enderror" value="{{$order->documents}}" id="documents">
                 @error('documents')
                     <span class="invalid-feedback" role="alert">

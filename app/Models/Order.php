@@ -26,6 +26,7 @@ class Order extends Model
         'progress',
         'results',
         'dealed_fee',
+        'documents',
         'status',
     ];
 
@@ -68,5 +69,18 @@ class Order extends Model
         }
 
         return $badge;
+    }
+
+    public function getNeedsStringAttribute()
+    {
+        if($this->needs === 'design_build'){
+            $string = 'Desain & Build';
+        } elseif($this->needs === 'design_only') {
+            $string = 'Desain Only';
+        } elseif($this->needs === 'build_only') {
+            $string = 'Build Only';
+        }
+
+        return $string;
     }
 }

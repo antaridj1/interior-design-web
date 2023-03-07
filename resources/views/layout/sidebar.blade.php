@@ -26,7 +26,7 @@
         <li class="nav-item">
           <a class="nav-link {{Route::is('styleInterior.edit', 'styleInterior.index', 'styleInterior.create')? '' : 'collapsed'}}" href="{{route('styleInterior.index')}}">
             <i class="bi bi-people"></i>
-            <span>Style SInterior</span>
+            <span>Style Interior</span>
           </a>
         </li>
         <li class="nav-item">

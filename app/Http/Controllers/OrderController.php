@@ -108,6 +108,11 @@ class OrderController extends Controller
             'phone_number' => $request->phone_number,
             'password' => Str::random(8),
         ]);
+        if($request->file('results')){
+            $image_path = $request->file('results')->store('image', 'public');
+        } else {
+            $image_path = $order->results;
+        }
 
         $order->update([
             'employee_id' => 1,
@@ -118,10 +123,13 @@ class OrderController extends Controller
             'room_size' => $request->room_size,
             'interior_style_id' => $request->interior_style_id,
             'budget' => $request->budget,
+            'status' => $request->status,
             'started_month' => $month,
             'detail' => $request->detail,
             'progress' => $request->progress,
             'dealed_fee' => $request->dealed_fee,
+            'documents' => $request->documents,
+            'results' => $image_path
         ]);
 
         return redirect('employee/order')

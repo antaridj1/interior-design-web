@@ -16,7 +16,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6></h6>
+              <h6>My Project</h6>
             </li>
             <li>
               <hr class="dropdown-divider">

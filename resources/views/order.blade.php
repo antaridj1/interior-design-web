@@ -59,7 +59,7 @@
 
                         <div class="row portfolio portfolio-container" data-aos="fade-up" data-aos-delay="150">
                             @foreach ($styles as $style)
-                                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                                <div class="col-lg-6 col-md-6 portfolio-item filter-app">
                                     <label class="image-checkbox">
                                         <img src="{{asset('assets/img/modern.jpg')}}" class="img-fluid" alt="">
                                         <input type="checkbox" name="style_interior_id" value="{{$style->id}}" />
@@ -74,7 +74,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <input type="file" class="dropify" data-height="300" />
+                       
                        
                     </div>
                     <div class="form-group mt-3">

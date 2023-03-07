@@ -27,7 +27,7 @@
               <h5 class="card-title">Form Style Interior</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('styleInterior.update',$style_interior->id)}}" class="row g-3">
+              <form method="post" action="{{route('styleInterior.update',$style_interior->id)}}" class="row g-3" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <div class="col-12">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <input type="file" class="dropify" data-height="300" name="image" />
+                    <input type="file" class="dropify" data-height="300" name="image" data-default-file="{{ asset('storage/'.$style_interior->image) }}" />
                     <label for="image">Gambar</label>
                     @error('image')
                         <div class="invalid-feedback">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                      <input class="form-control @error('description') is-invalid @enderror" name="description" id="description" {{ $style_interior->name}} required>
+                      <input class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ $style_interior->description}}" required>
                       <label for="description">Deskripsi</label>
                       @error('description')
                           <div class="invalid-feedback">

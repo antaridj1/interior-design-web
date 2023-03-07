@@ -89,11 +89,14 @@ class StyleInteriorController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'description' => 'required'
         ]);
 
-        $image_path = $request->file('image')->store('image', 'public');
+        if($request->file('image')){
+            $image_path = $request->file('image')->store('image', 'public');
+        } else {
+            $image_path = $style_interior->image;
+        }
 
         $style_interior->update([
             'name' => $request->name,

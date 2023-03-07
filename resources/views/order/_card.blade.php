@@ -58,10 +58,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>More Documents (Google Drive)</td>
+                    <td>: {{$order->documents}}</td>
+                </tr>
+                <tr>
                     <td>Result</td>
-                    <td>: {{$order->results}}</td>
+                    <td>:</td>
                 </tr>
             </table>
+            <img src="{{ asset('storage/'.$order->results) }}" width="100%" alt="">
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-between">

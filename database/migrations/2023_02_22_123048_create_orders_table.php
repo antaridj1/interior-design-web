@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->string('progress')->default(0);
             $table->string('results')->nullable();
             $table->integer('dealed_fee')->nullable();
+            $table->string('documents')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

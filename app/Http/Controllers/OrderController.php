@@ -20,7 +20,12 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = Order::all();
+        if($request->status){
+            $orders = Order::where('status', $request->status)->get();
+        } else {
+             $orders = Order::all();
+        }
+       
         return view('order.index', compact('orders'));
     }
 

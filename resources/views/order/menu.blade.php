@@ -7,11 +7,11 @@
 
 <main id="main" class="main">
     <div class="pagetitle">   
-        <h1>Laporan</h1>
+        <h1>Order</h1>
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Laporan</li>
+            <li class="breadcrumb-item active">Order</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,9 +23,9 @@
         <div class="col-lg-12">
             <div class="row">
                 <!-- Recent Sales -->
-                @forelse ($laporans as $laporan)
+                @forelse ($orders as $order)
                     <div class="col-12"> 
-                        @include('laporan._card')
+                        @include('order._card')
                     </div><!-- End Recent Sales -->
                 @empty
                     <div class="col-12"> 

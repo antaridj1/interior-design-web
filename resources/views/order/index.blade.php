@@ -6,8 +6,14 @@
 @include('layout.sidebar')
 
 <main id="main" class="main">
-    <div class="pagetitle">   
-        <h1>Order</h1>
+    <div class="pagetitle">  
+      @if(request()->status == 0)
+        <h1>Project Masuk</h1>
+        @elseif(request()->status == 1)
+        <h1>Project On Going</h1>
+        @elseif(request()->status == 2)
+        <h1>Project Selesai</h1>
+      @endif
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>

@@ -48,6 +48,6 @@
         </section>
         @include('layout.user.footer')
     </main>
-@include('layout.alert ')
+@include('layout.alert')
 @endsection
     

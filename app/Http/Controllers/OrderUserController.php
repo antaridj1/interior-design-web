@@ -54,8 +54,8 @@ class OrderUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+            // 'name' => 'required',
+            // 'email' => 'required|email',
             'type' => 'required',
             'isRenovation' => 'required',
             'needs' => 'required',
@@ -65,22 +65,22 @@ class OrderUserController extends Controller
 
         $month = Carbon::parse($request->started_month)->toDateString();
 
-        $users = User::where('email', $request->email);
+        // $users = User::where('email', $request->email);
 
-        if($users->count() > 0){
-            $user_id = $users->value('id');
-        } else {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone_number' => $request->phone_number,
-                'password' => Str::random(8),
-            ]);
-            $user_id = $user->id;
-        }
+        // if($users->count() > 0){
+        //     $user_id = $users->value('id');
+        // } else {
+        //     $user = User::create([
+        //         'name' => $request->name,
+        //         'email' => $request->email,
+        //         'phone_number' => $request->phone_number,
+        //         'password' => Str::random(8),
+        //     ]);
+        //     $user_id = $user->id;
+        // }
 
         Order::create([
-            'user_id' => $user_id,
+            'user_id' => Auth::id(),
             'employee_id' => 1,
             'type' => $request->type,
             'isRenovation' => $request->isRenovation,

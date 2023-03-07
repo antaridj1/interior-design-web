@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row d-flex justify-content-center" data-aos="fade-up">
                     <div class="col-lg-6">
-                        <form method="POST" action="{{ route('login') }}" role="form" class="php-email-form">
+                        <form method="POST" action="{{ route('register') }}" role="form" class="php-email-form">
                             @csrf
                             <h2 class="text-center">Registrasi</h2>
                             <div class="form-group mt-3">

@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-borderless">
+            <table class="table table-borderless text-start">
                 <tr>
                     <td>Title</td>
                     <td>: {{$order->title}}</td>

@@ -14,7 +14,7 @@
     </script>
 @endif
 
-@if(session()->has('auth'))
+@if(session('auth') === 'warning')
     <script>
         Swal.fire({        
             icon: 'warning',

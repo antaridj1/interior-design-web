@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nota;
 use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
@@ -94,7 +95,12 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('order.edit',compact('order'));
+        $notas = null;
+        $nota = Nota::where('order_id',$order->id);
+        if($nota->count() > 0){
+            $notas = $nota->get();
+        }
+        return view('order.edit',compact('order', 'notas'));
     }
 
     /**
@@ -106,13 +112,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $month = Carbon::parse($request->started_month)->toDateString();
-        User::where('id',$order->user_id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Str::random(8),
-        ]);
+        // $month = Carbon::parse($request->started_month)->toDateString();
+
         if($request->file('results')){
             $image_path = $request->file('results')->store('image', 'public');
         } else {
@@ -121,21 +122,45 @@ class OrderController extends Controller
 
         $order->update([
             'employee_id' => 1,
-            'type' => $request->type,
-            'isRenovation' => $request->isRenovation,
-            'needs' => $request->needs,
-            'location' => $request->location,
-            'room_size' => $request->room_size,
-            'interior_style_id' => $request->interior_style_id,
-            'budget' => $request->budget,
+            // 'type' => $request->type,
+            // 'isRenovation' => $request->isRenovation,
+            // 'needs' => $request->needs,
+            // 'location' => $request->location,
+            // 'room_size' => $request->room_size,
+            // 'interior_style_id' => $request->interior_style_id,
+            // 'budget' => $request->budget,
+            // 'started_month' => $month,
             'status' => $request->status,
-            'started_month' => $month,
             'detail' => $request->detail,
             'progress' => $request->progress,
             'dealed_fee' => $request->dealed_fee,
             'documents' => $request->documents,
             'results' => $image_path
         ]);
+
+        $nota = Nota::where('order_id',$order->id);
+        
+        if($nota->count() > 0){
+            $nota->delete();
+        }
+
+        if(collect($request->name)->count() > 0){
+            $names = collect($request->name);
+            $qtys = collect($request->qty);
+            $prices = collect($request->price);
+            $totals = collect($request->total);
+
+            foreach ($names as $key => $name) {
+                Nota::create([
+                    'order_id' => $order->id,
+                    'name' => $name,
+                    'qty' => $qtys[$key],
+                    'price' => $prices[$key],
+                    'total' => $totals[$key],
+                ]);
+            }
+        }
+        
 
         return redirect('employee/order')
             ->with('status','success')

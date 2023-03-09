@@ -10,6 +10,7 @@ class Nota extends Model
     use HasFactory;
 
     protected $fillable = [
+        'order_id',
         'name',
         'qty',
         'price',

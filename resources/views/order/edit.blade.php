@@ -159,21 +159,34 @@
                             <hr>
                             <div class="col-12">                           
                                 <table class="table" id="table">
-                                   <h5>RAB interior</h5>
-                                    <thead style="display:none">
+                                    <h5>RAB interior</h5>
+                                    <thead style="{{($notas == null)? 'display:none' : ''}}">
                                         <tr style="color:rgb(57, 57, 57)">
                                             <th>Nama Barang</th>
-                                            <th>Jumlah</th>
-                                            <th>Harga Satuan (Rp)</th>
-                                            <th>Total (Rp)</th>
+                                            <th class="text-center">Jumlah</th>
+                                            <th class="text-end">Harga Satuan (Rp)</th>
+                                            <th class="text-end">Total (Rp)</th>
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
-                                    <tfoot style="display:none">
+                                    <tbody>
+                                        @if ($notas !== null)
+                                            @foreach ($notas as $nota)
+                                                <tr>
+                                                    <td class="name">{{$nota->name}}<input type="hidden" name="name[]" value="{{$nota->name}}"></td>
+                                                    <td class="qty text-center">{{$nota->qty}}<input type="hidden" name="qty[]" value="{{$nota->qty}}"></td>
+                                                    <td class="price text-end">{{number_format($nota->price,0)}}<input type="hidden" name="price[]" value="{{$nota->price}}"></td>
+                                                    <td class="total text-end">{{number_format($nota->total,0)}}<input type="hidden" name="total[]" value="{{$nota->total}}"></td>
+                                                    <td class="hapus text-center"><i class="bi bi-trash" style="color:red; cursor:pointer;"></i></td>
+                                                </tr>
+                                            @endforeach                                       
+                                        @endif
+                                    </tbody>
+
+                                    <tfoot style="{{($notas == null)? 'display:none' : ''}}">
                                         <tr>
-                                            <th colspan="3">Subtotal</th>
-                                            <th id="subtotal"></th>
+                                            <th colspan="3">Subtotal (Rp)</th>
+                                            <th id="subtotal" class="text-end"></th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
@@ -182,26 +195,28 @@
                                     <i class="bi bi-plus-circle"></i>
                                     Tambahkan Data RAB
                                 </button>
-                                @include('order._modal')  
                             </div>
-                       
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" id="test" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </div> 
                         </form><!-- End floating Labels Form -->
+                        @include('order._modal')
                     </div>
                 </div>
             </div>
         </div>
     </section>
-  </main><!-- End #main -->
+</main><!-- End #main -->
 
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 <script>
+    $('#test').on('click', function(){
+        console.log('test')
+    })
     const thead = $('#table thead');
     const tbody = $("#table tbody");
     const tfoot = $("#table tfoot");
@@ -216,10 +231,10 @@
         tbody.append(
             `<tr>
                 <td class="name">${name}<input type="hidden" name="name[]" value="${name}"></td>
-                <td class="price">${price}<input type="hidden" name="price[]" value="${price}"></td>
-                <td class="qty">${qty}<input type="hidden" name="qty[]" value="${qty}"></td>
-                <td class="total text-right"><input type="hidden" name="total[]" value="${total}">${total}</td>\
-                <td class="hapus text-center"><i class="bi bi-trash" style="color:red; cursor:pointer;"></i></td>\
+                <td class="qty text-center">${qty}<input type="hidden" name="qty[]" value="${qty}"></td>
+                <td class="price text-end">${parseInt(price).toLocaleString('en')}<input type="hidden" name="price[]" value="${price}"></td>
+                <td class="total text-end">${total.toLocaleString('en')}<input type="hidden" name="total[]" value="${total}"></td>
+                <td class="hapus text-center"><i class="bi bi-trash" style="color:red; cursor:pointer;"></i></td>
             </tr>`
         );
 
@@ -234,17 +249,13 @@
         deleteItem();
     });
 
-        
-
-    
-
     function getSubtotal(){
         let sub = $('.total');
         var subtotal = 0;
         $.each(sub, function(index, value){
-            subtotal += parseInt(sub.eq(index).text());
+            subtotal += parseInt(sub.eq(index).find('input').val());
         });
-        $('#subtotal').text(subtotal);
+        $('#subtotal').text(subtotal.toLocaleString('en'));
     }
 
     function resetForm(){
@@ -270,8 +281,8 @@
 
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();   
-
-    
+        getSubtotal();
+        deleteItem();
     });
 
 </script>

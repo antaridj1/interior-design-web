@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title','Dashboard | BRI')
+@section('title','Semara Interior')
 
 @section('container')
 @include('layout.header')

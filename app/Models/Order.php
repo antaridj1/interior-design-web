@@ -40,6 +40,11 @@ class Order extends Model
         return $this->belongsTo(Employee::class, 'employee_id');
     }
 
+    public function nota()
+    {
+        return $this->hasMany(Nota::class, 'order_id');
+    }
+
     public function getFormattedStartedMonthAttribute()
     {
         return Carbon::parse($this->started_month)->format('M Y');

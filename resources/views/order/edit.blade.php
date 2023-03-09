@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title','Dashboard | BRI')
+@section('title','Semara Interior')
 
 @section('container')
 @include('layout.header')
@@ -24,69 +24,75 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Form Order</h5>
-
+                        <h5 class="card-title">Data Order</h5>
                         <!-- Floating Labels Form -->
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>: {{$order->user->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>: {{$order->user->email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>No Telp</td>
+                                            <td>: {{$order->user->phone_number}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lokasi</td>
+                                            <td>: {{$order->location}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ukuran Ruangan</td>
+                                            <td>: {{$order->room_size}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td>Kebutuhan</td>
+                                            <td>: {{$order->needs_string}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jenis Interior</td>
+                                            <td>: {{$order->type}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Style Interior</td>
+                                            <td>: Modern, Minimalis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Budget</td>
+                                            <td>: {{$order->budget}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bulan project dimulai</td>
+                                            <td>: {{$order->formatted_started_month}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Update Order</h5>
                         <form method="post" action="{{route('order.update', $order->id)}}" class="row g-3" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
-                            <div class="row">
-                                <div class="col-6">
-                                    <table class="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <td>Nama</td>
-                                                <td>: {{$order->user->name}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Email</td>
-                                                <td>: {{$order->user->email}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>No Telp</td>
-                                                <td>: {{$order->user->phone_number}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lokasi</td>
-                                                <td>: {{$order->location}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ukuran Ruangan</td>
-                                                <td>: {{$order->room_size}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-6">
-                                    <table class="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <td>Kebutuhan</td>
-                                                <td>: {{$order->needs_string}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jenis Interior</td>
-                                                <td>: {{$order->type}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Style Interior</td>
-                                                <td>: Modern, Minimalis</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Budget</td>
-                                                <td>: {{$order->budget}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bulan project dimulai</td>
-                                                <td>: {{$order->formatted_started_month}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            
-                            <hr>
-
                             <div class="row">
                                 <div class="form-group mt-3">
                                     <label for="detail" class="form-label">Detail Mengenai Interior</label>
@@ -151,7 +157,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="col-12 round p-4 shadow-sm bg-body">                           
+                            <div class="col-12">                           
                                 <table class="table" id="table">
                                    <h5>RAB interior</h5>
                                     <thead style="display:none">
@@ -183,8 +189,8 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </div> 
-                        </div>
-                    </form><!-- End floating Labels Form -->
+                        </form><!-- End floating Labels Form -->
+                    </div>
                 </div>
             </div>
         </div>

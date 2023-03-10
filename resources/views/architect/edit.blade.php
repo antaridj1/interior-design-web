@@ -11,7 +11,7 @@
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('employee/home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('architect.index')}}">Architect</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.architect.index')}}">Architect</a></li>
             <li class="breadcrumb-item active">Edit Architect</li>
             </ol>
         </nav>
@@ -27,7 +27,7 @@
               <h5 class="card-title">Form Architect</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('architect.update',$architect->id)}}" class="row g-3">
+              <form method="post" action="{{route('employee.architect.update',$architect->id)}}" class="row g-3">
                 @csrf
                 @method('patch')
                 <div class="col-12">

@@ -24,7 +24,7 @@
                 @endif 
             </td>
             <td class="text-center">
-                <a href="{{route('architect.edit',$architect->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                <a href="{{route('employee.architect.edit',$architect->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$architect->id}}">
                     <i class="bi bi-trash-fill"></i>
                 </button>

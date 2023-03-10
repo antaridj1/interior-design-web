@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('landing-page');
-})->middleware('guest:web');
+});
 
 Route::get('/home', function () {
     return view('landing-page');
-})->middleware('guest:web');
+});
 
 Auth::routes();
 
@@ -81,6 +81,8 @@ Route::prefix('employee')->name('employee.')->group(function(){
                 '' => 'landing-page'
             ]);
         });
+
+        Route::post('logout', [LogoutController::class, 'employeeLogout'])->name('logout');
    
     });
 });

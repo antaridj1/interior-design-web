@@ -6,7 +6,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('architect.updateStatus',$architect->id)}}">
+          <form method="post" action="{{route('employee.architect.updateStatus',$architect->id)}}">
             @method('patch')
             @csrf
             <div class="form-group"> 
@@ -30,7 +30,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('architect.destroy',$architect->id)}}">
+          <form method="post" action="{{route('employee.architect.destroy',$architect->id)}}">
             @method('delete')
             @csrf
             <div class="form-group"> 

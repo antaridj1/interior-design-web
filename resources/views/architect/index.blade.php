@@ -31,7 +31,7 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Architect</h5>
-                    <a href="{{route('architect.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Architect</a>
+                    <a href="{{route('employee.architect.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Architect</a>
                   </div>
                  @include('architect._table')
                 </div>

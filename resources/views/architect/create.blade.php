@@ -10,7 +10,7 @@
         <h1>Tambah Architect</h1>
         <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('architect.index')}}">Architect</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.architect.index')}}">Architect</a></li>
             <li class="breadcrumb-item active">Tambah Architect</li>
             </ol>
         </nav>
@@ -26,7 +26,7 @@
               <h5 class="card-title">Form Architect</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('architect.store')}}" class="row g-3">
+              <form method="post" action="{{route('employee.architect.store')}}" class="row g-3">
                 @csrf
                 <div class="col-12">
                   <div class="form-floating">

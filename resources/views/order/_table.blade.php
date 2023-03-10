@@ -20,10 +20,10 @@
             <td>{{$order->formatted_started_month}}</td>
             <td> <span class="badge rounded-pill {{$order->status_badge}}">{{$order->status_string}}</span></td>
             <td class="text-center">
-                <a href="{{route('order.show',$order->id)}}" class="btn btn-sm btn-outline-info">
+                <a href="{{route('employee.order.show',$order->id)}}" class="btn btn-sm btn-outline-info">
                     <i class="bi bi-info-circle-fill"></i>
                 </a>
-                <a href="{{route('order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
+                <a href="{{route('employee.order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
                     <i class="bi bi-pencil-square"></i>
                 </a>
                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">

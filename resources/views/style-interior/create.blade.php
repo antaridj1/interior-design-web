@@ -10,7 +10,7 @@
         <h1>Tambah Style Interior</h1>
         <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('styleInterior.index')}}">Style Interior</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.styleInterior.index')}}">Style Interior</a></li>
             <li class="breadcrumb-item active">Tambah Style Interior</li>
             </ol>
         </nav>
@@ -26,7 +26,7 @@
               <h5 class="card-title">Form Style Interior</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('styleInterior.store')}}" class="row g-3" enctype="multipart/form-data">
+              <form method="post" action="{{route('employee.styleInterior.store')}}" class="row g-3" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3"> 
                   <label for="name" class="col-sm-2 col-form-label">Nama</label>

@@ -31,7 +31,7 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <h5 class="card-title">Style Interior</h5>
-                    <a href="{{route('styleInterior.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Style Interior</a>
+                    <a href="{{route('employee.styleInterior.create')}}" class="btn btn-primary rounded-pill m-3"> <i class="bi bi-plus-circle"></i> Tambah Style Interior</a>
                   </div>
                  @include('style-interior._table')
                 </div>

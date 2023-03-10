@@ -44,7 +44,7 @@
           <div class="row">
             @if (role('admin'))
               <div class="col-4">
-                <a href="{{route('order.index')}}?status=0">
+                <a href="{{route('employee.order.index')}}?status=0">
                   <div class="card info-card sales-card">
                     <div class="card-body">
                       <h5 class="card-title">Project Masuk <span> | Per 2023</span></h5>
@@ -63,7 +63,7 @@
               </div>
             @endif
             <div class="{{(role('admin'))? 'col-4' : 'col-6'}}">
-              <a href="{{route('order.index')}}?status=1">
+              <a href="{{route('employee.order.index')}}?status=1">
                 <div class="card info-card customers-card">
                   <div class="card-body">
                     <h5 class="card-title">On Going Project <span>| Per 2023</span></h5>
@@ -85,7 +85,7 @@
             </div><!-- End Terkirim -->
             <!-- Diproses -->
             <div class="{{(role('admin'))? 'col-4' : 'col-6'}}">
-              <a href="{{route('order.index')}}?status=2">
+              <a href="{{route('employee.order.index')}}?status=2">
                 <div class="card info-card revenue-card">
                   <div class="card-body">
                     <h5 class="card-title">Project Selesai <span> | Per 2023</span></h5>

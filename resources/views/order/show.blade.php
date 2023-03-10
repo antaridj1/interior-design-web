@@ -10,8 +10,8 @@
         <h1>Detail Order</h1>
         <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('order.index')}}">Order</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.order.index')}}">Order</a></li>
             <li class="breadcrumb-item active">Detail Order</li>
             </ol>
         </nav>

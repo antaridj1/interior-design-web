@@ -11,7 +11,7 @@
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('employee/home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('order.index')}}">Order</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.order.index')}}">Order</a></li>
             <li class="breadcrumb-item active">Edit Order</li>
             </ol>
         </nav>
@@ -90,7 +90,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Update Order</h5>
-                        <form method="post" action="{{route('order.update', $order->id)}}" class="row g-3" enctype="multipart/form-data">
+                        <form method="post" action="{{route('employee.order.update', $order->id)}}" class="row g-3" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
                             <div class="row">

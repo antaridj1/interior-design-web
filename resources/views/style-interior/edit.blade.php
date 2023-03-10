@@ -11,7 +11,7 @@
         <nav>
             <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('employee/home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('styleInterior.index')}}">Style Interior</a></li>
+            <li class="breadcrumb-item"><a href="{{route('employee.styleInterior.index')}}">Style Interior</a></li>
             <li class="breadcrumb-item active">Edit Style Interior</li>
             </ol>
         </nav>
@@ -27,7 +27,7 @@
               <h5 class="card-title">Form Style Interior</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('styleInterior.update',$style_interior->id)}}" class="row g-3" enctype="multipart/form-data">
+              <form method="post" action="{{route('employee.styleInterior.update',$style_interior->id)}}" class="row g-3" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <div class="col-12">

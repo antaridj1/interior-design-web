@@ -16,7 +16,7 @@
             <td class="text-center">{{$style_interior->name}}</td>
             <td class="text-center">{{$style_interior->description}}</td>
             <td class="text-center">
-                <a href="{{route('styleInterior.edit',$style_interior->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                <a href="{{route('employee.styleInterior.edit',$style_interior->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$style_interior->id}}">
                     <i class="bi bi-trash-fill"></i>
                 </button>

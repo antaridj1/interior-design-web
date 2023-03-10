@@ -72,7 +72,7 @@
             <div class="d-flex justify-content-between">
                 <p>Architect : {{$order->architect->name}}</p>
                 <div>
-                    <a href="{{route('order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
+                    <a href="{{route('employee.order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
                         <i class="bi bi-pencil-square"></i>
                     </a>
                     <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">

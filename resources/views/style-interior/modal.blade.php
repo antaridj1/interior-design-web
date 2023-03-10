@@ -6,7 +6,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('styleInterior.destroy',$style_interior->id)}}">
+          <form method="post" action="{{route('employee.styleInterior.destroy',$style_interior->id)}}">
             @method('delete')
             @csrf
             <div class="form-group"> 

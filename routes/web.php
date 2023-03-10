@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('landing-page');
-});
+})->middleware('guest:web');
 
 Route::get('/home', function () {
     return view('landing-page');
-});
+})->middleware('guest:web');
 
 Auth::routes();
 
@@ -39,9 +39,9 @@ Route::middleware('auth:web')->group(function(){
     Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
 });
 
-Route::prefix('employee')->group(function(){
-    Route::get('login', [LoginController::class, 'showEmployeeLoginForm']);
-    Route::post('login', [LoginController::class, 'employeeLogin'])->name('employee.login');
+Route::prefix('employee')->name('employee.')->group(function(){
+    Route::get('login', [LoginController::class, 'showEmployeeLoginForm'])->middleware('guest:employee');
+    Route::post('login', [LoginController::class, 'employeeLogin'])->name('login')->middleware('guest:employee');
 
     Route::middleware('auth:employee')->group(function(){
         Route::get('home', [HomeController::class, 'index'])->name('home');

@@ -26,7 +26,7 @@
               <h5 class="card-title">Form Order</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('order.store')}}" class="row g-3">
+              <form method="post" action="{{route('employee.order.store')}}" class="row g-3">
                 @csrf
                 <div class="row">
                   <div class="form-group mt-3">

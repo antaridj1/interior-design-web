@@ -41,4 +41,9 @@ class Employee extends Authenticatable
         return Order::where('employee_id',$this->id)->where('status',2)->get()->count();
     }
 
+    public function getArchitectStatusAttribute()
+    {
+        return $this->status == false ? 'Available' : 'Not Available';
+    }
+
 }

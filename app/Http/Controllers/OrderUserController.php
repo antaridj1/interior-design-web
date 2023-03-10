@@ -78,16 +78,15 @@ class OrderUserController extends Controller
         //     ]);
         //     $user_id = $user->id;
         // }
-
+        $styles = (array)$request->style_interior;
         Order::create([
             'user_id' => Auth::id(),
-            'employee_id' => 1,
             'type' => $request->type,
             'isRenovation' => $request->isRenovation,
             'needs' => $request->needs,
             'location' => $request->location,
             'room_size' => $request->room_size,
-            'style_interior_id' => $request->style_interior_id,
+            'style_interior' => $styles,
             'budget' => $request->budget,
             'started_month' => $month,
             'detail' => $request->detail

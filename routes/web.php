@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArchitectController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\ProjectController;
@@ -52,8 +53,8 @@ Route::prefix('employee')->name('employee.')->group(function(){
             Route::resource('/', OrderController::class)->parameters([
                 '' => 'order'
             ]);
-            Route::patch('/{order}/verifikasi', [OrderController::class, 'verifikasi'])->name('verifikasi');
-            
+            Route::patch('/{order}/updateStatus', [OrderController::class, 'updateStatus'])->name('updateStatus');
+            Route::get('nota/{order}', [OrderController::class, 'printNota'])->name('printNota');
         });
 
         Route::group(['prefix' => 'style-interior', 'as' => 'styleInterior.'],function () {

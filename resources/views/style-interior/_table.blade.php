@@ -1,4 +1,4 @@
- <table class="table table-borderless datatable">
+ <table class="table table-bordered datatable">
     <thead>
     <tr>
         <th class="text-center" scope="col">No</th>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Nota;
 use App\Models\Order;
 use App\Models\User;
@@ -84,7 +85,8 @@ class OrderController extends Controller
     public function show($id)
     {   
         $order = Order::find($id);
-        return view('order.show',compact('order'));
+        $architects = Employee::where('isAdmin',false)->get();
+        return view('order.show',compact('order', 'architects'));
     }
 
     /**
@@ -130,7 +132,6 @@ class OrderController extends Controller
             // 'interior_style_id' => $request->interior_style_id,
             // 'budget' => $request->budget,
             // 'started_month' => $month,
-            'status' => $request->status,
             'detail' => $request->detail,
             'progress' => $request->progress,
             'dealed_fee' => $request->dealed_fee,
@@ -180,6 +181,43 @@ class OrderController extends Controller
         return redirect('order')
             ->with('status','success')
             ->with('message','order berhasil terhapus');
+    }
+
+    public function updateStatus(Request $request, Order $order){
+        if ($request->status == IS_DIPROSES){
+            $request->validate([
+                'architect' => 'required',
+            ]);
+
+            $order->update([
+                'status' => IS_DIPROSES,
+                'employee_id' => $request->architect,
+            ]);
+
+            User::where('id', Auth::id())->update([
+                'status' => false
+            ]);
+
+        } elseif($request->status == IS_SELESAI_DIPROSES){
+            $order->update([
+                'status' => IS_SELESAI_DIPROSES,
+            ]);
+
+        } elseif($request->status == IS_TUNTAS){
+            $order->update([
+                'status' => IS_TUNTAS,
+            ]);
+            User::where('id', $order->employee_id)->update([
+                'status' => true
+            ]);
+        }
+        return back()
+            ->with('status','success')
+            ->with('message','Status order berhasil diupdate');
+    }
+
+    public function printNota(Order $order){
+        return view('order.nota', compact('order'));
     }
 
 }

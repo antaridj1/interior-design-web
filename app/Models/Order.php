@@ -10,6 +10,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'style_interior' => 'array',
+    ];
+
     protected $fillable = [
         'user_id',
         'employee_id',
@@ -19,7 +23,7 @@ class Order extends Model
         'isRenovation',
         'needs',
         'room_size',
-        'style_interior_id',
+        'style_interior',
         'budget',
         'started_month',
         'detail',

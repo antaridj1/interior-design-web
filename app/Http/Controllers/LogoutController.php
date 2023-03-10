@@ -14,6 +14,6 @@ class LogoutController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/employee');
+        return redirect('/employee/login');
     }
 }

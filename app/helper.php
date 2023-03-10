@@ -3,11 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 
 const IS_TERKIRIM = 0;
-const IS_DITERIMA = 1;
-const IS_DITOLAK = 2;
-const IS_DIPROSES = 3;
-const IS_SELESAI_DIPROSES = 4;
-const IS_TUNTAS = 5;
+const IS_DIPROSES = 1;
+const IS_SELESAI_DIPROSES = 2;
+const IS_TUNTAS = 3;
 
 function role($role){
     if ($role === 'admin'){

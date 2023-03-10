@@ -104,30 +104,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="employee_id" class="form-label">Architect</label>
-                                    <select class="form-select" aria-label="Default select example" name="employee_id">
-                                        <option value="1">Architect 1 (Tersedia)</option>
-                                        <option value="2">Architect 2 (Tidak Tersedia)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label for="dealed_fee" class="form-label">Dealed Fee (Rp)</label>
-                                    <input type="text" name="dealed_fee" class="form-control @error('dealed_fee') is-invalid @enderror" value="{{ $order->dealed_fee }}" id="dealed_fee" required>
-                                    @error('dealed_fee')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" aria-label="Default select example" name="status">
-                                        <option {{$order->status === 0 ? 'selected' : ''}} value="0">Pending</option>
-                                        <option {{$order->status === 1 ? 'selected' : ''}} value="1">On Going</option>
-                                        <option {{$order->status === 2 ? 'selected' : ''}} value="2">Done</option>
-                                    </select>
-                                </div>
-                                <div class="form-group mt-3">
                                     <label for="progress" class="form-label">Progress (%)</label>
                                     <input type="number" name="progress" class="form-control @error('progress') is-invalid @enderror" value="{{ $order->progress }}" id="progress" required>
                                     @error('progress')

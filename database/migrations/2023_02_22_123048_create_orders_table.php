@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('needs');
             $table->string('location');
             $table->string('room_size')->nullable();
-            $table->unsignedBigInteger('style_interior_id')->nullable();
+            $table->string('style_interior')->nullable();
             $table->string('budget')->nullable();
             $table->date('started_month');
             $table->text('detail')->nullable();

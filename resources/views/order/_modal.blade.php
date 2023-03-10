@@ -54,3 +54,44 @@
     </div>
   </div>
 </div>
+
+@if(isset($architects))
+    <div class="modal fade" id="prosesModal_{{$order->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Proses Order</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{{route('employee.order.updateStatus',$order->id)}}?status={{IS_DIPROSES}}">
+            @method('patch')
+            @csrf
+            <div class="form-group"> 
+                <p>Setelah Anda memproses order, pegawai akan memproses order</p>
+                <p>Pilih pegawai yang akan memproses order ini :</p>
+                @foreach ($architects as $architect)
+                    <div class="form-check border py-3 mb-2" style="padding-left: 2.5rem; border-radius: 10px;">
+                        <input class="form-check-input" type="radio" {{($architect->status == false)? 'disabled' : ''}} name="architect" id="architect_{{$architect->id}}" value="{{$architect->id}}">
+                        <label class="form-check-labelv ml-2" for="architect_{{$architect->id}}">
+                            {{$architect->name}} 
+                        </label>
+                        @if ($architect->status == true)
+                            <span class="badge badge-sm rounded-pill bg-success">Available</span>
+                        @else
+                            <span class="badge rounded-pill bg-secondary">Not Available</span>
+                        @endif
+                    </div> 
+                @endforeach
+            </div>
+            
+            <div class="d-flex justify-content-between mt-3">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary" >Ya </button>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+@endif

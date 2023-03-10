@@ -7,77 +7,113 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-borderless text-start">
-                <tr>
-                    <td>Title</td>
-                    <td>: {{$order->title}}</td>
-                </tr>
-                <tr>
-                    <td>Lokasi</td>
-                    <td>: {{$order->location}}</td>
-                </tr>
-                <tr>
-                    <td>Kebutuhan</td>
-                    <td>: {{$order->needs}}</td>
-                </tr>
-                <tr>
-                    <td>Jenis Interior</td>
-                    <td>: {{$order->type}}</td>
-                </tr>
-                <tr>
-                    <td>Ukuran Ruangan</td>
-                    <td>: {{$order->room_size}}</td>
-                </tr>
-                <tr>
-                    <td>Style Interior</td>
-                    <td>: Modern, Minimalis</td>
-                </tr>
-                <tr>
-                    <td>Budget</td>
-                    <td>: {{$order->budget}}</td>
-                </tr>
-                <tr>
-                    <td>Bulan project dimulai</td>
-                    <td>: {{$order->formatted_started_month}}</td>
-                </tr>
-                <tr>
-                    <td>Detail</td>
-                    <td>: {{$order->detail}}</td>
-                </tr>
-                <tr>
-                    <td>Dealed Fee</td>
-                    <td>: {{$order->dealed_fee}}</td>
-                </tr>
-                <tr>
-                    <td>Progress</td>
-                    <td class="d-flex">
-                        <span>: </span>
-                        <div class="progress col-6 mt-1 ms-1">
-                            <div class="progress-bar" role="progressbar" style="width: {{$order->progress}}%" aria-valuenow="{{$order->progress}}" aria-valuemin="0" aria-valuemax="100">{{$order->progress}}</div>
+            <div class="row">
+                <div class="col-6">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Nama</td>
+                                <td>: {{$order->user->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>: {{$order->user->email}}</td>
+                            </tr>
+                            <tr>
+                                <td>No Telp</td>
+                                <td>: {{$order->user->phone_number}}</td>
+                            </tr>
+                            <tr>
+                                <td>Lokasi</td>
+                                <td>: {{$order->location}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ukuran Ruangan</td>
+                                <td>: {{$order->room_size}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Kebutuhan</td>
+                                <td>: {{$order->needs_string}}</td>
+                            </tr>
+                            <tr>
+                                <td>Jenis Interior</td>
+                                <td>: {{$order->type}}</td>
+                            </tr>
+                            <tr>
+                                <td>Style Interior</td>
+                                <td>: Modern, Minimalis</td>
+                            </tr>
+                            <tr>
+                                <td>Budget</td>
+                                <td>: {{$order->budget}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bulan project dimulai</td>
+                                <td>: {{$order->formatted_started_month}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <p><b>Detail</b></p>
+                        <p>{{$order->detail}}</p>
+                    </div>
+                    @if($order->nota)
+                        <div class="mb-4">
+                            <p><b>Nota</b></p>
+                            <a href="{{route('employee.order.printNota', $order->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i> Download Nota</a>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>More Documents (Google Drive)</td>
-                    <td>: {{$order->documents}}</td>
-                </tr>
-                <tr>
-                    <td>Result</td>
-                    <td>:</td>
-                </tr>
-            </table>
-            <img src="{{ asset('storage/'.$order->results) }}" width="100%" alt="">
+                    @endif
+                    <div class="mb-4">
+                        <p><b>Progress</b></p>
+                        <div class="progress col-6">
+                            <div class="progress-bar" role="progressbar" style="width: {{$order->progress}}%" aria-valuenow="{{$order->progress}}" aria-valuemin="0" aria-valuemax="100">{{$order->progress}}%</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p><b>Link Dokumen</b></p>
+                        <p><a href="{{$order->documents}}">{{$order->documents}}</a></p>
+                    </div>
+                    <div>
+                        <p><b>Gambar Terupdate</b></p>
+                        <img src="{{ asset('storage/'.$order->results) }}" target="_blank" width="100%" alt="">
+                    </div>
+                    
+                </div>
+            </div>
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-between">
-                <p>Architect : {{$order->architect->name}}</p>
+                @if($order->status !== IS_TERKIRIM)
+                    <p>Architect : {{$order->architect->name}}</p>
+                @endif
+                <div></div>
                 <div>
-                    <a href="{{route('employee.order.edit',$order->id)}}" class="btn btn-sm btn-outline-primary">
+                    @if($order->status == IS_TERKIRIM)
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#prosesModal_{{$order->id}}">
+                            Proses Sekarang
+                        </button>
+                    @endif
+                    <a href="{{route('employee.order.edit',$order->id)}}" class="btn btn-sm btn-warning">
                         <i class="bi bi-pencil-square"></i>
+                        Update
                     </a>
-                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
+                    @if(role('admin'))
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">
+                            <i class="bi bi-trash-fill"></i>
+                            Delete
+                        </button>
+                    @endif
                 </div>
                 @include('order._modal')
             </div>

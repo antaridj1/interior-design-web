@@ -1,12 +1,12 @@
-<div class="modal fade" id="exampleModal_{{$style_interior->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal_{{$portfolio->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Style Interior</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Portfolio</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('employee.styleInterior.destroy',$style_interior->id)}}">
+          <form method="post" action="{{route('employee.portfolio.destroy',$portfolio->id)}}">
             @method('delete')
             @csrf
             <div class="form-group"> 

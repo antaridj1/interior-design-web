@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal_{{$style_interior->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal_{{$type_interior->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -6,7 +6,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('employee.styleInterior.destroy',$style_interior->id)}}">
+          <form method="post" action="{{route('employee.typeInterior.destroy',$type_interior->id)}}">
             @method('delete')
             @csrf
             <div class="form-group"> 

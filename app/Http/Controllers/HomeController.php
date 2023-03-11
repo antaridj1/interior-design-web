@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Laporan;
 use App\Models\Order;
+use App\Models\Portfolio;
+use App\Models\TypeInterior;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +44,10 @@ class HomeController extends Controller
         }
     }
 
-    public function indexUser(){
-        return view('home-user');
+    public function landingPage(){
+        $type_interiors = TypeInterior::all();
+        $portfolios = Portfolio::all();
+        $company = Company::first();
+        return view('landing-page', compact('type_interiors', 'portfolios', 'company'));
     }
 }

@@ -36,9 +36,23 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{Route::is('employee.landingPage.*')? '' : 'collapsed'}}" href="{{route('employee.landingPage.index')}}">
+          <a class="nav-link {{Route::is('employee.portfolio.*')? '' : 'collapsed'}}" href="{{route('employee.portfolio.index')}}">
             <i class="bi bi-bank"></i>
-            <span>Landing Page</span>
+            <span>Portfolio</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{Route::is('employee.typeInterior.*')? '' : 'collapsed'}}" href="{{route('employee.typeInterior.index')}}">
+            <i class="bi bi-bank"></i>
+            <span>Tipe Interior</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{Route::is('employee.company.*')? '' : 'collapsed'}}" href="{{route('employee.company.index')}}">
+            <i class="bi bi-bank"></i>
+            <span>Company</span>
           </a>
         </li>
       @endif

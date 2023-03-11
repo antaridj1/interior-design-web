@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\ArchitectController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderUserController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StyleInteriorController;
+use App\Http\Controllers\TypeInteriorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,13 +25,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('landing-page');
-});
 
-Route::get('/home', function () {
-    return view('landing-page');
-});
+Route::get('home', [HomeController::class, 'landingPage']);
 
 Auth::routes();
 
@@ -69,6 +67,12 @@ Route::prefix('employee')->name('employee.')->group(function(){
             ]);
         });
 
+        Route::group(['prefix' => 'type-interior', 'as' => 'typeInterior.'],function () {
+            Route::resource('/', TypeInteriorController::class)->parameters([
+                '' => 'type_interior'
+            ]);
+        });
+
         Route::group(['prefix' => 'architect', 'as' => 'architect.'],function () {
             Route::resource('/', ArchitectController::class)->parameters([
                 '' => 'architect'
@@ -83,11 +87,18 @@ Route::prefix('employee')->name('employee.')->group(function(){
             Route::patch('/{user}/update-status', [UserController::class, 'update_status'])->name('updateStatus');
         });
 
-        Route::group(['prefix' => 'landing-page', 'as' => 'landingPage.'],function () {
-            Route::resource('/', LandingPageController::class)->parameters([
-                '' => 'landing-page'
+        Route::group(['prefix' => 'portfolio', 'as' => 'portfolio.'],function () {
+            Route::resource('/', PortfolioController::class)->parameters([
+                '' => 'portfolio'
             ]);
         });
+
+        Route::group(['prefix' => 'company', 'as' => 'company.'],function () {
+            Route::resource('/', CompanyController::class)->parameters([
+                '' => 'company'
+            ]);
+        });
+
 
         Route::post('logout', [LogoutController::class, 'employeeLogout'])->name('logout');
    

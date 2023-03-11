@@ -33,16 +33,22 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::middleware('auth:web')->group(function(){
-    Route::get('order-user', [OrderUserController::class, 'index']);
-    Route::post('order-user', [OrderUserController::class, 'store'])->name('orderUser');
-    Route::get('project', [ProjectController::class, 'index'])->name('project.index');
+
+    Route::group(['prefix' => 'order-user', 'as' => 'orderUser.'],function () {
+        Route::resource('/', OrderUserController::class)->parameters([
+            '' => 'order'
+        ]); 
+        Route::patch('{order}/upload', [OrderUserController::class, 'uploadBuktiBayar'])->name('uploadBuktiBayar');
+        Route::get('nota/{order}', [OrderUserController::class, 'printNota'])->name('printNota');
+    });
+       
     Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
 });
 
 Route::prefix('employee')->name('employee.')->group(function(){
-    Route::get('login', [LoginController::class, 'showEmployeeLoginForm'])->middleware('guest:employee');
-    Route::post('login', [LoginController::class, 'employeeLogin'])->name('login')->middleware('guest:employee');
+    Route::get('login', [LoginController::class, 'showEmployeeLoginForm']);
+    Route::post('login', [LoginController::class, 'employeeLogin'])->name('login');
 
     Route::middleware('auth:employee')->group(function(){
         Route::get('home', [HomeController::class, 'index'])->name('home');

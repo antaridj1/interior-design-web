@@ -47,7 +47,7 @@
                             </tr>
                             <tr>
                                 <td>Style Interior</td>
-                                <td>: Modern, Minimalis</td>
+                                <td>: {{$order->styles_interiors}}</td>
                             </tr>
                             <tr>
                                 <td>Budget</td>

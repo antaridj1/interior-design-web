@@ -24,36 +24,46 @@
             <div class="card-body" id="sentCard">
               <h5 class="card-title">Order Terkirim</h5>
               @forelse ($orders_sent as $order)
-                  @include('order._card')
+                  @include('order-user._card')
               @empty
                 <p class="card-text">Anda belum melakukan order.</p>
-                <a href="{{route('orderUser')}}" class="btn btn-primary">Order Sekarang</a>
+                <a href="{{route('orderUser.create')}}" class="btn btn-primary">Order Sekarang</a>
               @endforelse
               
             </div>
             <div class="card-body" id="ongoingCard" style="display:none;">
               <h5 class="card-title">On Going Project</h5>
               @forelse ($orders_ongoing as $order)
-                  @include('order._card')
+                  @include('order-user._card')
               @empty
                 <p class="card-text">Anda belum memiliki project.</p>
-                <a href="{{route('orderUser')}}" class="btn btn-primary">Order Sekarang</a>
+                <a href="{{route('orderUser.create')}}" class="btn btn-primary">Order Sekarang</a>
               @endforelse
               
             </div>
             <div class="card-body" id="historyCard" style="display:none;">
               <h5 class="card-title">History Project</h5>
-              @include('order._accordion')
+              @include('order-user._accordion')
             </div>
           </div>
   
         </div>
       </section>
-
+      @if(session()->has('status'))
+        @include('layout.alert')
+      @endif
       @include('layout.user.footer')
   </main>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+
+<script>
+  $('.dropify').dropify();
+</script>
+
 
   <script>
     $(document).ready(function(){

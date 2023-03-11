@@ -31,6 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('results')->nullable();
             $table->integer('dealed_fee')->nullable();
             $table->string('documents')->nullable();
+            $table->string('bukti_bayar')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

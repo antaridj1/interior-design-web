@@ -31,6 +31,7 @@ class Order extends Model
         'results',
         'dealed_fee',
         'documents',
+        'bukti_bayar',
         'status',
     ];
 
@@ -91,5 +92,9 @@ class Order extends Model
         }
 
         return $string;
+    }
+
+    public function getStylesInteriorsAttribute(){
+        return implode(",",$this->style_interior);
     }
 }

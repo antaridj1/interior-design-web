@@ -29,28 +29,21 @@ class OrderUserController extends Controller
 
     }
 
-    public function index()
-    {
-        $styles = StyleInterior::all();
-        return view('order', compact('styles'));
+    public function index(Request $request)
+    {   
+        $orders_sent = Order::where('user_id', Auth::id())->where('status',0)->get();
+        $orders_ongoing = Order::where('user_id', Auth::id())->where('status',1)->get();
+        $orders = Order::where('user_id', Auth::id())->get();
+        return view('order-user.index', compact('orders_sent','orders_ongoing','orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
-    {
-        //
+    {   
+        $styles = StyleInterior::all();
+        return view('order-user.create', compact('styles'));
     }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -92,9 +85,14 @@ class OrderUserController extends Controller
             'detail' => $request->detail
         ]);
 
-        return redirect('order-user')
+        return redirect('order-user/create')
         ->with('status','success')
         ->with('message','Formulir telah dikirim');
+    }
+
+    
+    public function printNota(Order $order){
+        return view('order.nota', compact('order'));
     }
 
     /**
@@ -137,8 +135,30 @@ class OrderUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return redirect('order-user')
+            ->with('status','success')
+            ->with('message','order berhasil terhapus');
+    }
+
+    public function uploadBuktiBayar(Request $request, Order $order){
+        $request->validate([
+            'bukti_bayar' => 'required',
+        ]);
+
+        if($request->file('bukti_bayar')){
+            $image_path = $request->file('bukti_bayar')->store('image', 'public');
+        }
+
+        $order->update([
+            'bukti_bayar' => $image_path,
+        ]);
+
+        return redirect('order-user')
+            ->with('status','success')
+            ->with('message','Bukti Pembayaran Berhasil Diupload');
     }
 }

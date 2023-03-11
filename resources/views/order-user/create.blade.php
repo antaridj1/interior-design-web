@@ -9,7 +9,7 @@
         <div class="container">
           <div class="row d-flex justify-content-center" data-aos="fade-up">
             <div class="col-lg-10">
-                <form method="POST" action="{{ route('orderUser') }}" role="form" class="php-email-form">
+                <form method="POST" action="{{ route('orderUser.store') }}" role="form" class="php-email-form">
                 @csrf
                 <div class="row">
                     <h2 class="text-center">Formulir Order</h2>

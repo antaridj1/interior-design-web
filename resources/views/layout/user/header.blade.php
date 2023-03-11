@@ -7,7 +7,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto {{Request::is('/')? 'active' : ''}}" href="{{url('/')}}">Home</a></li>
-                <li><a class="nav-link scrollto {{Request::is('order')? 'active' : ''}}" href="{{url('order-user')}}">Order</a></li>
+                <li><a class="nav-link scrollto {{Route::is('orderUser.create')? 'active' : ''}}" href="{{route('orderUser.create')}}">Order</a></li>
                 
                 @guest
                     <li><a class="nav-link {{Request::is('login')? 'active' : ''}}" href="{{url('login')}}">Login</a></li>
@@ -16,9 +16,9 @@
                 
                 
                 @auth
-                    <li class="dropdown {{Request::is('project')? 'active' : ''}}"><a href="#"><span>Hi, {{auth()->user()->name}}</span><i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown {{Request::is('order-user')? 'active' : ''}}"><a href="#"><span>Hi, {{auth()->user()->name}}</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="{{route('project.index')}}">My Project</a></li>
+                            <li><a href="{{route('orderUser.index')}}">My Project</a></li>
                             <li><a href="#">Edit Account</a></li>
                             <li>
                                 <a  href="{{ route('logout') }}" 

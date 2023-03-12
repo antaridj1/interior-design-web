@@ -73,6 +73,7 @@ class PortfolioController extends Controller
         $request->validate([
             'type_interior_id' => 'required',
             'name' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'description' => 'required'
         ]);
 

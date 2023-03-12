@@ -41,24 +41,24 @@
           <div class="col-lg-4" data-aos="fade-up">
             <div class="box">
               <span>01</span>
-              <h4>Home Interior</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+              <h4>Design</h4>
+              <p>Anda dapat memilih untuk memesan desain saja tanpa membangun interior</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="150">
             <div class="box">
               <span>02</span>
-              <h4>Repellat Nihil</h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+              <h4>Build</h4>
+              <p>Anda dapat memilih untuk membangun saja seperti merenovasi rumah atau ruangan</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="box">
               <span>03</span>
-              <h4> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <h4>Design & Build</h4>
+              <p>Tentunya Anda juga dapat memilih untuk memesan desain dan bangun interior sekaligus dengan jasa kami</p>
             </div>
           </div>
 
@@ -94,11 +94,11 @@
         <div class="row">
           @foreach ($type_interiors as $type_interior)
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-                <div class="icon-box">
+                <div class="icon-box" style="width:400px">
                   <div class="icon"><i class="bx bxl-dribbble"></i></div>
                   <h4><a href="">{{$type_interior->name}} Interior</a></h4>
                   <p>{{$type_interior->description}}</p>
-                </div>
+                </div> 
               </div>
           @endforeach
 
@@ -136,108 +136,24 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">House</li>
-              <li data-filter=".filter-card">Cafe</li>
-              <li data-filter=".filter-web">Apartemen</li>
-              <li data-filter=".filter-web">Villa</li>
-              <li data-filter=".filter-web">Office</li>
-              <li data-filter=".filter-web">Guest House</li>
+              @foreach ($type_interiors as $type_interior)
+                  <li data-filter=".filter_{{$type_interior->id}}">{{$type_interior->name}}</li>
+              @endforeach
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="150">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{asset('assets/img/portfolio/portfolio-1.jpg')}}" class="img-fluid" alt="">
+          @foreach ($portfolios as $portfolio)
+          <div class="col-lg-4 col-md-6 portfolio-item filter_{{$portfolio->type_interior_id}}">
+            <img src="{{ asset('storage/'.$portfolio->image) }}" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-1.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <h4>{{$portfolio->name}}</h4>
+              <p>{{$portfolio->description}}</p>
+              <a href="{{ asset('storage/'.$portfolio->image) }}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-link"></i></a>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{asset('assets/img/portfolio/portfolio-2.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-2.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{asset('assets/img/portfolio/portfolio-3.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-3.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{asset('assets/img/portfolio/portfolio-4.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-4.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{asset('assets/img/portfolio/portfolio-5.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-5.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{asset('assets/img/portfolio/portfolio-6.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-6.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{asset('assets/img/portfolio/portfolio-7.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-7.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="{{asset('assets/img/portfolio/portfolio-8.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-8.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="{{asset('assets/img/portfolio/portfolio-9.jpg')}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="{{asset('assets/img/portfolio/portfolio-9.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
+          @endforeach
         </div>
 
       </div>
@@ -248,63 +164,60 @@
       <div class="container">
 
         <div class="section-title">
-          <span>Team</span>
-          <h2>Team</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <span>Testimonial</span>
+          <h2>Testimonial</h2>
+          <p>Keunggulan Semara Interior telah dibuktikan oleh sebagian client kami</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
             <div class="member">
-              <img src="{{asset('assets/img/team/team-1.jpg')}}" alt="">
-              <h4>Walter White</h4>
-              <span>Chief Executive Officer</span>
+              <img src="{{asset('assets/img/portfolio/testi.jpeg')}}" alt="">
+              <h4>Ibu Rimi</h4>
+              <span>Penatih, Denpasar, Bali</span>
               <p>
-                Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                "Jujurly rumah ini amat sangat ketolong sama interiornya, pada bilang bagus bange interiornya, pengerjaannya rapi banget"
               </p>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
             <div class="member">
-              <img src="{{asset('assets/img/team/team-2.jpg')}}" alt="">
-              <h4>Sarah Jhinson</h4>
-              <span>Product Manager</span>
+              <img src="{{asset('assets/img/portfolio/testi1.jpeg')}}" alt="">
+              <h4>Kak Heppy</h4>
+              <span>Lukluk, Mengwi, Badung</span>
               <p>
-                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+                "Bagus banget, bintang lima, pasangannya rapi"
               </p>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
               </div>
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
             <div class="member">
-              <img src="{{asset('assets/img/team/team-3.jpg')}}" alt="">
-              <h4>William Anderson</h4>
-              <span>CTO</span>
+              <img src="{{asset('assets/img/portfolio/empty.png')}}" style="width:200px; height:180px" alt="">
+              <h4>Oka Putri</h4>
+              <span>Denpasar, Bali</span>
               <p>
-                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+                "Thanks to Semara Studio sudah mewujudkan meja customku sesuai request banget"
               </p>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
+                <i class="bi bi-star-fill" style="color:rgb(255, 221, 0)"></i>
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -315,8 +228,8 @@
       <div class="container">
 
         <div class="section-title">
-          <span>Contact</span>
-          <h2>Contact</h2>
+          <span>Kontak</span>
+          <h2>Kontak</h2>
           <p>Hubungi kami melalui kontak berikut</p>
         </div>
 

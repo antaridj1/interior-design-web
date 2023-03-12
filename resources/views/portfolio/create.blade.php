@@ -45,7 +45,7 @@
                   <div class="col-sm-10"> 
                     <select class="form-select" aria-label="Default select example" name="type_interior_id">
                       @foreach ($type_interiors as $type_interior)
-                           <option value="{{$type_inteior->id}}">{{$type_inteior->name}} Interior</option>
+                           <option value="{{$type_interior->id}}">{{$type_interior->name}} Interior</option>
                       @endforeach
                     </select>
                     @error('type_interior_id')

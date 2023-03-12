@@ -43,6 +43,25 @@
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
+                    <select class="form-select" aria-label="Default select example" name="type_interior_id">
+                      @foreach ($type_interiors as $type_interior)
+                          <option {{$type_interior->id == $portfolio->type_interior_id ? 'selected' : ''}} 
+                            value="{{$type_interior->id}}">
+                            {{$type_interior->name}} Interior
+                          </option>
+                      @endforeach
+                    </select>
+                    <label for="name">Tipe Interior</label>
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                  <div class="form-floating">
                     <input type="file" class="dropify" data-height="300" name="image" data-default-file="{{ asset('storage/'.$portfolio->image) }}" />
                     <label for="image">Gambar</label>
                     @error('image')

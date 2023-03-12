@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('home', [HomeController::class, 'landingPage']);
+Route::get('/', [HomeController::class, 'landingPage']);
 
 Auth::routes();
 

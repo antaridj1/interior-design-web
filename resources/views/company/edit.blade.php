@@ -85,38 +85,15 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="form-floating">
-                      <input type="file" class="dropify" data-height="300" name="logo" data-default-file="{{ asset('storage/'.$company->logo) }}" />
-                      <label for="logo">Logo</label>
+                  <label for="logo">Logo</label>
+                      <input type="file" class="dropify" name="logo" data-default-file="{{ asset('storage/'.$company->logo) }}" data-show-errors="true" />
                       @error('logo')
                           <div class="invalid-feedback">
                               {{$message}}
                           </div>
                       @enderror
-                    </div>
                   </div>
-                  <div class="col-12">
-                    <div class="form-floating">
-                      <input type="file" class="dropify" data-height="300" name="favicon" data-default-file="{{ asset('storage/'.$company->favicon) }}" />
-                      <label for="favicon">Favicon</label>
-                      @error('favicon')
-                          <div class="invalid-feedback">
-                              {{$message}}
-                          </div>
-                      @enderror
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-floating">
-                      <input type="file" class="dropify" data-height="300" name="jumbotron" data-default-file="{{ asset('storage/'.$company->jumbotron) }}" />
-                      <label for="jumbotron">Jumbotron</label>
-                      @error('jumbotron')
-                          <div class="invalid-feedback">
-                              {{$message}}
-                          </div>
-                      @enderror
-                    </div>
-                  </div>
+                 
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
@@ -127,6 +104,9 @@
           </div>
       </div>
     </section>
+    @if(session()->has('status'))
+    @include('layout.alert')
+  @endif
   </main><!-- End #main -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -137,5 +117,6 @@
 <script>
   $('.dropify').dropify();
 </script>
+
 
   @endsection

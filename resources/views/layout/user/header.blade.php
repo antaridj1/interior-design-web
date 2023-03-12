@@ -1,8 +1,8 @@
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-        <h1 class="logo"><a href="index.html">Semara Group</a></h1>
+        {{-- <h1 class="logo"><a href="{{url('/')}}"><img src="{{ asset('storage/'.$company->image) }}" width="200px" alt=""></a></h1> --}}
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo"><img src="{{asset('assets/img/logo.png')}}" alt="" class="img-fluid"></a>-->
+        <a href="index.html" class="logo"><img src="{{ asset('storage/'.$company->logo) }}" alt="logo" class="img-fluid"></a>
 
         <nav id="navbar" class="navbar">
             <ul>

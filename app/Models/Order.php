@@ -28,7 +28,7 @@ class Order extends Model
         'detail',
         'progress',
         'results',
-        // 'dealed_fee',
+        'subtotal',
         'documents',
         'bukti_bayar',
         'status',

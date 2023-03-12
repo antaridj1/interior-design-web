@@ -69,20 +69,28 @@
                         <p>{{$order->detail}}</p>
                     </div>
                     @if($order->status !== IS_TERKIRIM)
-                        <div class="mb-4">
-                            <p><b>Nota</b></p>
-                            <a href="{{route('employee.order.printNota', $order->id)}}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-box-arrow-up-right"></i>
-                                Lihat Nota
-                            </a>
-                        </div>
-                        <div class="mb-4">
-                            <p><b>Bukti Pembayaran</b></p>
-                            <a href="{{ asset('storage/'.$order->bukti_bayar) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-box-arrow-up-right"></i> 
-                                Lihat Bukti Pembayaran
-                            </a>
-                        </div>
+                        @if(role('admin'))
+                            <div class="mb-4">
+                                <p><b>Nota</b></p>
+                                <button class="btn btn-sm {{$order->nota->count() !== 0 ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
+                                    data-bs-toggle="modal" data-bs-target="#notaOrderModal_{{$order->id}}"
+                                    {{$order->nota->count() !== 0 ? '' : 'disabled'}}>
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                    Lihat Nota
+                                </button>
+                            </div>
+                            <div class="mb-4">
+                                <p><b>Bukti Pembayaran</b></p>
+                                <form method="get" action="{{ asset('storage/'.$order->bukti_bayar) }}" target="_blank">
+                                    @csrf
+                                    <button class="btn btn-sm {{$order->bukti_bayar !== null ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
+                                        {{$order->bukti_bayar !== null ? '' : 'disabled'}}>
+                                        <i class="bi bi-box-arrow-up-right"></i> 
+                                        Lihat Bukti Pembayaran
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
                         <div class="mb-4">
                             <p><b>Progress</b></p>
                             <div class="progress col-6">

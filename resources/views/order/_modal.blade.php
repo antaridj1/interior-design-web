@@ -95,3 +95,27 @@
     </div>
     </div>
 @endif
+
+@if($order->nota->count() !== 0)
+    <div class="modal fade" id="notaOrderModal_{{$order->id}}" tabindex="-1" aria-labelledby="notaOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="notaOrderModalLabel">Nota Interior</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @include('order._nota')
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{route('employee.order.printNota', $order->id)}}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-download"></i> 
+                            Download Nota
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif

@@ -23,8 +23,6 @@ class CompanySeeder extends Seeder
                 'email' => 'semaramuliaofficial@gmail.com',
                 'description' => 'Jasa Desain Interior & Produksi Interior berlokasi di BALI',
                 'logo' => 'image.jpg',
-                'favicon' => 'image.jpg',
-                'jumbotron' => 'image.jpg',
             ]
         ];
 

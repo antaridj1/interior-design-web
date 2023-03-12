@@ -16,8 +16,6 @@ class Company extends Model
         'email',
         'description',
         'logo',
-        'favicon',
-        'jumbotron',
     ];
     
 }

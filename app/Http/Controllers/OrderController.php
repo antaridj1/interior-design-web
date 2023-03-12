@@ -147,31 +147,42 @@ class OrderController extends Controller
                 Mail::to($to)->send(new \App\Mail\SendEmail($details));
                 
             }
-        }
 
-        $nota = Nota::where('order_id',$order->id);
-        
-        if($nota->count() > 0){
-            $nota->delete();
-        }
-
-        if(collect($request->name)->count() > 0){
-            $names = collect($request->name);
-            $qtys = collect($request->qty);
-            $prices = collect($request->price);
-            $totals = collect($request->total);
-
-            foreach ($names as $key => $name) {
-                Nota::create([
-                    'order_id' => $order->id,
-                    'name' => $name,
-                    'qty' => $qtys[$key],
-                    'price' => $prices[$key],
-                    'total' => $totals[$key],
+            if($order->progress == 100){
+                $order->update([
+                    'status' => IS_SELESAI_DIPROSES
                 ]);
             }
         }
+
+        if(roleController('admin')){
+            $nota = Nota::where('order_id',$order->id);
         
+            if($nota->count() > 0){
+                $nota->delete();
+            }
+
+            if(collect($request->name)->count() > 0){
+                $names = collect($request->name);
+                $qtys = collect($request->qty);
+                $prices = collect($request->price);
+                $totals = collect($request->total);
+
+                foreach ($names as $key => $name) {
+                    Nota::create([
+                        'order_id' => $order->id,
+                        'name' => $name,
+                        'qty' => $qtys[$key],
+                        'price' => $prices[$key],
+                        'total' => $totals[$key],
+                    ]);
+                }
+
+                $order->update([
+                    'subtotal' => $request->subtotal
+                ]);
+            }
+        }
 
         return redirect('employee/order')
             ->with('status','success')

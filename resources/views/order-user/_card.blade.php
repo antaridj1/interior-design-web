@@ -53,10 +53,12 @@
                 @if($order->status !== IS_TERKIRIM)
                     <div class="mb-4">
                         <p><b>Nota</b></p>
-                        <a href="{{route('orderUser.printNota', $order->id)}}" class="btn btn-sm btn-outline-primary">
-                            <i class="bi bi-download"></i> 
-                            Download Nota
-                        </a>
+                        <button class="btn btn-sm {{$order->nota->count() !== 0 ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
+                            data-bs-toggle="modal" data-bs-target="#notaOrderModal_{{$order->id}}"
+                            {{$order->nota->count() !== 0 ? '' : 'disabled'}}>
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            Lihat Nota
+                        </button>
                     </div>
                     @if($order->bukti_bayar !== null)
                         <div class="mb-4">
@@ -97,11 +99,12 @@
                             <i class="bi bi-pencil-square"></i>
                             {{$order->bukti_bayar == null? 'Upload Bukti Pembayaran' : 'Edit Bukti Pembayaran'}}
                         </button>
+                @else
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">
+                        <i class="bi bi-trash-fill"></i>
+                        Delete
+                    </button>
                 @endif
-                <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOrderModal_{{$order->id}}">
-                    <i class="bi bi-trash-fill"></i>
-                    Delete
-                </button>
             </div>
             @include('order-user._modal')
         </div>

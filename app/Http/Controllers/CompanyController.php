@@ -22,14 +22,19 @@ class CompanyController extends Controller
             'telp' => 'required',
             'email' => 'required',
             'description' => 'required',
-            'logo' => 'required|image|mimes:jpg,png,jpeg,gif,svg,ico',
-            'favicon' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
-            'jumbotron' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'logo' => 'image|mimes:jpg,png,jpeg,gif,svg',
+            // 'favicon' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            // 'jumbotron' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
 
-        $image_logo = $request->file('logo')->store('image', 'public');
-        $image_favicon = $request->file('favicon')->store('image', 'public');
-        $image_jumbotron = $request->file('jumbotron')->store('image', 'public');
+        if($request->file('logo')){
+            $image_path = $request->file('logo')->store('image', 'public');
+        } else {
+            $image_path = $company->logo;
+        }
+
+        // $image_logo = $request->file('logo')->store('image', 'public');
+        // $image_jumbotron = $request->file('jumbotron')->store('image', 'public');
 
         $company->update([
             'name' => $request->name,
@@ -37,9 +42,9 @@ class CompanyController extends Controller
             'telp' => $request->telp,
             'email' => $request->email,
             'description' => $request->description,
-            'logo' => $image_logo,
-            'favicon' => $image_favicon,
-            'jumbotron' => $image_jumbotron,
+            'logo' => $image_path,
+            // 'favicon' => $image_favicon,
+            // 'jumbotron' => $image_jumbotron,
         ]);
     }
 }

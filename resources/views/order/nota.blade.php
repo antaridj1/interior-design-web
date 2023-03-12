@@ -51,49 +51,55 @@
                                 <td>: {{$order->needs_string}}</td>
                             </tr>
                             <tr>
-                                <td>Jenis Interior</td>
-                                <td>: {{$order->type}}</td>
+                                <td>Tipe Interior</td>
+                                <td>: {{$order->type_interior->name}} Interior</td>
                             </tr>
                             <tr>
                                 <td>Style Interior</td>
-                                <td>: Modern, Minimalis</td>
+                                <td>: {{$order->styles_interiors}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <h5 class="my-2"><b>Informasi Anggaran Biaya</b></h5>
-            <table class="table col-7 table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nama Barang</th>
-                        <th>Jumlah</th>
-                        <th class="text-end">Harga (Rp)</th>
-                        <th class="text-end">Total (Rp)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($order->nota as $item)
-                        <td>{{$item->name}}</td>
-                        <td>{{$item->qty}}</td>
-                        <td class="text-end">{{number_format($item->price,0)}}</td>
-                        <td class="text-end">{{number_format($item->total,0)}}</td>
-                    @endforeach
-               </tbody>
-                <tfoot>
-                    {{-- <tr>
-                        <th colspan="3">SUBTOTAL</th>
-                        <th class="text-right">Rp {{number_format($order->total_harga,0)}}</th>
-                    </tr> --}}
-                </tfoot>
-            </table>   
-            
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="my-2"><b>Informasi Anggaran Biaya</b></h5>
+                    <table class="table col-7 table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jumlah</th>
+                                <th class="text-end">Harga (Rp)</th>
+                                <th class="text-end">Total (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($order->nota as $item)
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->qty}}</td>
+                                <td class="text-end">{{number_format($item->price,0)}}</td>
+                                <td class="text-end">{{number_format($item->total,0)}}</td>
+                            @endforeach
+                    </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">SUBTOTAL</th>
+                                <th class="text-end">Rp {{number_format($order->subtotal,0)}}</th>
+                            </tr>
+                        </tfoot>
+                    </table>  
+                </div> 
             </div>
         </div>
     </div>
 
 <script type="text/javascript">
     window.print();
+    window.onafterprint = function() {
+        
+        history.go(-1);
+    }; 
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

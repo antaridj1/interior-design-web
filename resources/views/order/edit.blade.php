@@ -135,45 +135,48 @@
                                 @endif
                             </div>
                             <hr>
-                            <div class="col-12">                           
-                                <table class="table" id="table">
-                                    <h5>Nota Interior</h5>
-                                    <thead style="{{($notas == null)? 'display:none' : ''}}">
-                                        <tr style="color:rgb(57, 57, 57)">
-                                            <th>Nama Barang</th>
-                                            <th class="text-center">Jumlah</th>
-                                            <th class="text-end">Harga Satuan (Rp)</th>
-                                            <th class="text-end">Total (Rp)</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($notas !== null)
-                                            @foreach ($notas as $nota)
-                                                <tr>
-                                                    <td class="name">{{$nota->name}}<input type="hidden" name="name[]" value="{{$nota->name}}"></td>
-                                                    <td class="qty text-center">{{$nota->qty}}<input type="hidden" name="qty[]" value="{{$nota->qty}}"></td>
-                                                    <td class="price text-end">{{number_format($nota->price,0)}}<input type="hidden" name="price[]" value="{{$nota->price}}"></td>
-                                                    <td class="total text-end">{{number_format($nota->total,0)}}<input type="hidden" name="total[]" value="{{$nota->total}}"></td>
-                                                    <td class="hapus text-center"><i class="bi bi-trash" style="color:red; cursor:pointer;"></i></td>
-                                                </tr>
-                                            @endforeach                                       
-                                        @endif
-                                    </tbody>
+                            @if(role('admin'))
+                                <div class="col-12">                           
+                                    <table class="table" id="table">
+                                        <h5>Nota Interior</h5>
+                                        <thead style="{{($notas == null)? 'display:none' : ''}}">
+                                            <tr style="color:rgb(57, 57, 57)">
+                                                <th>Nama Barang</th>
+                                                <th class="text-center">Jumlah</th>
+                                                <th class="text-end">Harga Satuan (Rp)</th>
+                                                <th class="text-end">Total (Rp)</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($notas !== null)
+                                                @foreach ($notas as $nota)
+                                                    <tr>
+                                                        <td class="name">{{$nota->name}}<input type="hidden" name="name[]" value="{{$nota->name}}"></td>
+                                                        <td class="qty text-center">{{$nota->qty}}<input type="hidden" name="qty[]" value="{{$nota->qty}}"></td>
+                                                        <td class="price text-end">{{number_format($nota->price,0)}}<input type="hidden" name="price[]" value="{{$nota->price}}"></td>
+                                                        <td class="total text-end">{{number_format($nota->total,0)}}<input type="hidden" name="total[]" value="{{$nota->total}}"></td>
+                                                        <td class="hapus text-center"><i class="bi bi-trash" style="color:red; cursor:pointer;"></i></td>
+                                                    </tr>
+                                                @endforeach                                       
+                                            @endif
+                                        </tbody>
 
-                                    <tfoot style="{{($notas == null)? 'display:none' : ''}}">
-                                        <tr>
-                                            <th colspan="3">Subtotal (Rp)</th>
-                                            <th id="subtotal" class="text-end"></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                                <button type="button" class="btn btn-outline-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#rabOrderModal">
-                                    <i class="bi bi-plus-circle"></i>
-                                    Tambahkan Data Nota
-                                </button>
-                            </div>
+                                        <tfoot style="{{($notas == null)? 'display:none' : ''}}">
+                                            <tr>
+                                                <th colspan="3">Subtotal (Rp)</th>
+                                                <th id="subtotal" class="text-end"></th>
+                                                <input type="hidden" name="subtotal" id="subtotal_hidden" value="">
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <button type="button" class="btn btn-outline-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#rabOrderModal">
+                                        <i class="bi bi-plus-circle"></i>
+                                        Tambahkan Data Nota
+                                    </button>
+                                </div>
+                            @endif
                             <div class="text-center">
                                 <button type="submit" id="test" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
@@ -234,6 +237,7 @@
             subtotal += parseInt(sub.eq(index).find('input').val());
         });
         $('#subtotal').text(subtotal.toLocaleString('en'));
+        $('#subtotal_hidden').val(subtotal);
     }
 
     function resetForm(){

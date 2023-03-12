@@ -31,19 +31,24 @@
               @endforelse
               
             </div>
-            <div class="card-body" id="ongoingCard" style="display:none;">
+            <div class="card-body text-center" id="ongoingCard" style="display:none;">
               <h5 class="card-title">On Going Project</h5>
               @forelse ($orders_ongoing as $order)
                   @include('order-user._card')
               @empty
-                <p class="card-text">Anda belum memiliki project.</p>
-                <a href="{{route('orderUser.create')}}" class="btn btn-primary">Order Sekarang</a>
+                <p class="card-text text-center">Anda belum memiliki project.</p>
+                <a href="{{route('orderUser.create')}}" class="btn btn-primary text-center">Order Sekarang</a>
               @endforelse
               
             </div>
             <div class="card-body" id="historyCard" style="display:none;">
               <h5 class="card-title">History Project</h5>
-              @include('order-user._accordion')
+              @if($orders->count() !== 0)
+                @include('order-user._accordion')
+              @else
+                <p class="card-text">Anda belum memiliki project.</p>
+                <a href="{{route('orderUser.create')}}" class="btn btn-primary">Order Sekarang</a>
+              @endif
             </div>
           </div>
   

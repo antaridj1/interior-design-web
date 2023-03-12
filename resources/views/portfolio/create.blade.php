@@ -87,6 +87,9 @@
           </div>
       </div>
     </section>
+    @if(session()->has('status'))
+    @include('layout.alert')
+  @endif
   </main><!-- End #main -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

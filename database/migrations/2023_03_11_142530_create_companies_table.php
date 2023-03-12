@@ -21,8 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->string('email');
             $table->text('description');
             $table->string('logo');
-            $table->string('favicon');
-            $table->string('jumbotron');
+            // $table->string('favicon');
+            // $table->string('jumbotron');
             $table->timestamps();
         });
     }

@@ -73,5 +73,8 @@
           </div>
       </div>
     </section>
+    @if(session()->has('status'))
+    @include('layout.alert')
+  @endif
   </main><!-- End #main -->
   @endsection

@@ -30,14 +30,14 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group my-3 d-flex justify-content-end">
+                            {{-- <div class="form-group my-3 d-flex justify-content-end">
                                 @if (Route::has('password.request'))
                                     <a class="small text-end" href="{{ route('password.request') }}">
                                         {{ __('Lupa Password?') }}
                                     </a>
                                 @endif
-                            </div>
-                            <div class="col-12 mb-5">
+                            </div> --}}
+                            <div class="col-12 my-5">
                                 <button class="btn btn-primary w-100" type="submit">Login</button>
                             </div>
                         </form>

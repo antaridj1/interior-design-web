@@ -42,11 +42,11 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                         <a class="small text-end" href="{{ route('password.request') }}">
                                             {{ __('Lupa Password?') }}
                                         </a>
-                                    @endif
+                                    @endif --}}
                                     <div class="col-12">
                                         {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe" {{ old('remember') ? 'checked' : '' }}>

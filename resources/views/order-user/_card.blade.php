@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <td>Jenis Interior</td>
-                            <td>: {{$order->type}}</td>
+                            <td>: {{$order->type_interior_name}} Interior</td>
                         </tr>
                         <tr>
                             <td>Style Interior</td>

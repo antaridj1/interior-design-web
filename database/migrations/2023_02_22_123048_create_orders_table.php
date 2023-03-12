@@ -17,9 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('employee_id')->nullable();
-            $table->string('title')->nullable();
-            $table->string('type');
-            $table->string('isRenovation');
+            $table->unsignedBigInteger('type_interior_id');
+            // $table->boolean('isRenovation');
             $table->string('needs');
             $table->string('location');
             $table->string('room_size')->nullable();
@@ -27,9 +26,8 @@ class CreateOrdersTable extends Migration
             $table->string('budget')->nullable();
             $table->date('started_month');
             $table->text('detail')->nullable();
-            $table->string('progress')->default(0);
+            $table->integer('progress')->default(0);
             $table->string('results')->nullable();
-            $table->integer('dealed_fee')->nullable();
             $table->string('documents')->nullable();
             $table->string('bukti_bayar')->nullable();
             $table->tinyInteger('status')->default(0);

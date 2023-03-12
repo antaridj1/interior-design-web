@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StyleInteriorController;
 use App\Http\Controllers\TypeInteriorController;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'landingPage']);
+Route::get('/home', [HomeController::class, 'landingPage']);
 
 Auth::routes();
 
@@ -40,8 +42,8 @@ Route::middleware('auth:web')->group(function(){
         Route::get('nota/{order}', [OrderUserController::class, 'printNota'])->name('printNota');
     });
        
-    Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
-    Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
+    Route::get('profile-user', [ProfileController::class, 'editUser'])->name('profile.editUser');
+    Route::patch('profile-user', [ProfileController::class, 'updateUser'])->name('profile.updateUser');
 });
 
 Route::prefix('employee')->name('employee.')->group(function(){
@@ -50,8 +52,8 @@ Route::prefix('employee')->name('employee.')->group(function(){
 
     Route::middleware('auth:employee')->group(function(){
         Route::get('home', [HomeController::class, 'index'])->name('home');
-        Route::get('profile', [UserController::class, 'edit'])->name('profile.edit');
-        Route::patch('profile', [UserController::class, 'update'])->name('profile.update');
+        Route::get('profile', [ProfileController::class, 'editEmployee'])->name('profile.editEmployee');
+        Route::patch('profile', [ProfileController::class, 'updateEmployee'])->name('profile.updateEmployee');
 
         Route::group(['prefix' => 'order', 'as' => 'order.'],function () {
             Route::resource('/', OrderController::class)->parameters([

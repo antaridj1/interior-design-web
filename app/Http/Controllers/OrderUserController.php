@@ -47,7 +47,7 @@ class OrderUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required',
+            'type_interior_id' => 'required',
             'isRenovation' => 'required',
             'needs' => 'required',
             'location' => 'required',
@@ -59,7 +59,7 @@ class OrderUserController extends Controller
         $styles = (array)$request->style_interior;
         Order::create([
             'user_id' => Auth::id(),
-            'type' => $request->type,
+            'type_interior_id' => $request->type_interior_id,
             'isRenovation' => $request->isRenovation,
             'needs' => $request->needs,
             'location' => $request->location,

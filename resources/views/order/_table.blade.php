@@ -4,7 +4,7 @@
             <th class="text-center">No.</th>
             <th class="text-center">Nama Client</th>
             <th class="text-center">Telepon</th>
-            <th class="text-center">Jenis Interior</th>
+            <th class="text-center">Tipe Interior</th>
             <th class="text-center">Bulan Mulai</th>
             <th class="text-center">Status</th>
             <th class="text-center">Aksi</th>
@@ -16,7 +16,7 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$order->user->name}}</td>
             <td>{{$order->user->phone_number}}</td>
-            <td>{{$order->type}}</td> 
+            <td>{{$order->type_interior->name}} Interior</td> 
             <td>{{$order->formatted_started_month}}</td>
             <td> <span class="badge rounded-pill {{$order->status_badge}}">{{$order->status_string}}</span></td>
             <td class="text-center">

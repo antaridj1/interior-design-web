@@ -17,10 +17,9 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'employee_id',
-        'title',
-        'type',
+        'type_interior_id',
         'location',
-        'isRenovation',
+        // 'isRenovation',
         'needs',
         'room_size',
         'style_interior',
@@ -29,7 +28,7 @@ class Order extends Model
         'detail',
         'progress',
         'results',
-        'dealed_fee',
+        // 'dealed_fee',
         'documents',
         'bukti_bayar',
         'status',
@@ -43,6 +42,11 @@ class Order extends Model
     public function architect()
     {
         return $this->belongsTo(Employee::class, 'employee_id');
+    }
+
+    public function type_interior()
+    {
+        return $this->belongsTo(TypeInterior::class, 'type_interior_id');
     }
 
     public function nota()
@@ -62,7 +66,7 @@ class Order extends Model
         } elseif($this->status === 1){
             $status = 'On Going';
         } else {
-            $status = 'Selesai';
+            $status = 'Done';
         }
 
         return $status;
@@ -75,7 +79,7 @@ class Order extends Model
         } elseif($this->status === 1){
             $badge = 'bg-warning';
         } else {
-            $badge = 'success';
+            $badge = 'bg-success';
         }
 
         return $badge;

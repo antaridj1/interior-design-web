@@ -39,7 +39,7 @@ class StyleInteriorController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
             'description' => 'required'
         ]);
 

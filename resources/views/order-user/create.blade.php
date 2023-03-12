@@ -39,10 +39,11 @@
                         </select>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="type" class="form-label">Tipe Bangunan</label>
-                        <select class="form-select form-select-lg" aria-label="Default select example" name="type">
-                            <option value="rumah">Rumah</option>
-                            <option value="apartemen">Apartemen</option>
+                        <label for="type_interior_id" class="form-label">Tipe Interior</label>
+                        <select class="form-select form-select-lg" aria-label="Default select example" name="type_interior_id">
+                            @foreach ($type_interiors as $type_interior)
+                                <option value="{{$type_interior->id}}">{{$type_interior->name}} Interior</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mt-3">

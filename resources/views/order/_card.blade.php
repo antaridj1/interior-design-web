@@ -42,8 +42,8 @@
                                 <td>: {{$order->needs_string}}</td>
                             </tr>
                             <tr>
-                                <td>Jenis Interior</td>
-                                <td>: {{$order->type}}</td>
+                                <td>Tipe Interior</td>
+                                <td>: {{$order->type_interior->name}} Interior</td>
                             </tr>
                             <tr>
                                 <td>Style Interior</td>
@@ -68,26 +68,36 @@
                         <p><b>Detail</b></p>
                         <p>{{$order->detail}}</p>
                     </div>
-                    @if($order->nota)
+                    @if($order->status !== IS_TERKIRIM)
                         <div class="mb-4">
                             <p><b>Nota</b></p>
-                            <a href="{{route('employee.order.printNota', $order->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-download"></i> Download Nota</a>
+                            <a href="{{route('employee.order.printNota', $order->id)}}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                Lihat Nota
+                            </a>
+                        </div>
+                        <div class="mb-4">
+                            <p><b>Bukti Pembayaran</b></p>
+                            <a href="{{ asset('storage/'.$order->bukti_bayar) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-box-arrow-up-right"></i> 
+                                Lihat Bukti Pembayaran
+                            </a>
+                        </div>
+                        <div class="mb-4">
+                            <p><b>Progress</b></p>
+                            <div class="progress col-6">
+                                <div class="progress-bar" role="progressbar" style="width: {{$order->progress}}%" aria-valuenow="{{$order->progress}}" aria-valuemin="0" aria-valuemax="100">{{$order->progress}}%</div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <p><b>Link Dokumen</b></p>
+                            <p><a href="{{$order->documents}}">{{$order->documents}}</a></p>
+                        </div>
+                        <div>
+                            <p><b>Gambar Terupdate</b></p>
+                            <img src="{{ asset('storage/'.$order->results) }}" target="_blank" width="100%" alt="">
                         </div>
                     @endif
-                    <div class="mb-4">
-                        <p><b>Progress</b></p>
-                        <div class="progress col-6">
-                            <div class="progress-bar" role="progressbar" style="width: {{$order->progress}}%" aria-valuenow="{{$order->progress}}" aria-valuemin="0" aria-valuemax="100">{{$order->progress}}%</div>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <p><b>Link Dokumen</b></p>
-                        <p><a href="{{$order->documents}}">{{$order->documents}}</a></p>
-                    </div>
-                    <div>
-                        <p><b>Gambar Terupdate</b></p>
-                        <img src="{{ asset('storage/'.$order->results) }}" target="_blank" width="100%" alt="">
-                    </div>
                     
                 </div>
             </div>

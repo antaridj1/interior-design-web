@@ -19,7 +19,7 @@
                     <li class="dropdown {{Request::is('order-user')? 'active' : ''}}"><a href="#"><span>Hi, {{auth()->user()->name}}</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="{{route('orderUser.index')}}">My Project</a></li>
-                            <li><a href="#">Edit Account</a></li>
+                            <li><a href="{{route('profile.editUser')}}">Edit Account</a></li>
                             <li>
                                 <a  href="{{ route('logout') }}" 
                                     onclick="event.preventDefault();

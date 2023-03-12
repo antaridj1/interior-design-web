@@ -114,30 +114,40 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        // $month = Carbon::parse($request->started_month)->toDateString();
-
-        if($request->file('results')){
-            $image_path = $request->file('results')->store('image', 'public');
+        if($order->status == IS_TERKIRIM){
+            $order->update([
+                'detail' => $request->detail,
+            ]);
         } else {
-            $image_path = $order->results;
-        }
+            $request->validate([
+                'results' => 'image|mimes:jpg,png,jpeg,gif,svg',
+                'progress' => 'required|numeric|min:0|max:100',
+            ]);
 
-        $order->update([
-            'employee_id' => 1,
-            // 'type' => $request->type,
-            // 'isRenovation' => $request->isRenovation,
-            // 'needs' => $request->needs,
-            // 'location' => $request->location,
-            // 'room_size' => $request->room_size,
-            // 'interior_style_id' => $request->interior_style_id,
-            // 'budget' => $request->budget,
-            // 'started_month' => $month,
-            'detail' => $request->detail,
-            'progress' => $request->progress,
-            'dealed_fee' => $request->dealed_fee,
-            'documents' => $request->documents,
-            'results' => $image_path
-        ]);
+            if($request->file('results')){
+                $image_path = $request->file('results')->store('image', 'public');
+            } else {
+                $image_path = $order->results;
+            }
+            $progress = $request->progress > $order->progress? true : false;
+            $order->update([
+                'detail' => $request->detail,
+                'progress' => $request->progress,
+                'documents' => $request->documents,
+                'results' => $image_path
+            ]);
+           
+            if($progress === true){
+                $to = User::where('id',$order->user->id)->value('email');
+                
+                $details = [
+                    'title' => 'Progress Interior Telah Diupdate',
+                    'body' => 'Progress interior Anda sudah diupdate menjadi '.$request->progress.'%.'
+                ];
+                Mail::to($to)->send(new \App\Mail\SendEmail($details));
+                
+            }
+        }
 
         $nota = Nota::where('order_id',$order->id);
         
@@ -186,30 +196,23 @@ class OrderController extends Controller
     public function updateStatus(Request $request, Order $order){
         if ($request->status == IS_DIPROSES){
             $request->validate([
-                'architect' => 'required',
+                'architect_id' => 'required',
             ]);
 
             $order->update([
                 'status' => IS_DIPROSES,
-                'employee_id' => $request->architect,
+                'employee_id' => $request->architect_id,
             ]);
 
-            User::where('id', Auth::id())->update([
-                'status' => false
-            ]);
+            // Employee::where('id', $request->architect_id)->update([
+            //     'status' => false
+            // ]);
 
         } elseif($request->status == IS_SELESAI_DIPROSES){
             $order->update([
                 'status' => IS_SELESAI_DIPROSES,
             ]);
 
-        } elseif($request->status == IS_TUNTAS){
-            $order->update([
-                'status' => IS_TUNTAS,
-            ]);
-            User::where('id', $order->employee_id)->update([
-                'status' => true
-            ]);
         }
         return back()
             ->with('status','success')

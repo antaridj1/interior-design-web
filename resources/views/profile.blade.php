@@ -11,7 +11,7 @@
       <h1>Profil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{route('employee.home')}}">Home</a></li>
           <li class="breadcrumb-item active">Profil</li>
         </ol>
       </nav>
@@ -33,7 +33,7 @@
               <h5 class="card-title">Form Edit</h5>
 
               <!-- Floating Labels Form -->
-              <form method="post" action="{{route('profile.update')}}" class="row g-3">
+              <form method="post" action="{{route('employee.profile.updateEmployee')}}" class="row g-3">
                 @csrf
                 @method('patch')
                 <div class="col-12">
@@ -57,9 +57,21 @@
                         </div>
                     @enderror
                   </div>
-                </div> <div class="col-12">
+                </div> 
+                <div class="col-12">
                   <div class="form-floating">
-                    <input type="text" class="form-control @error('password') is-invalid @enderror" name="password" id="floatingPerihal">
+                    <input class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" id="floatingPerihal" value="{{ $user->phone_number }}">
+                    <label for="floatingPerihal">Telp</label>
+                    @error('phone_number')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                  </div>
+                </div> 
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="floatingPerihal">
                     <label for="floatingPerihal">Password</label>
                     @error('password')
                         <div class="invalid-feedback">

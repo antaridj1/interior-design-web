@@ -62,11 +62,11 @@
                                         </tr>
                                         <tr>
                                             <td>Jenis Interior</td>
-                                            <td>: {{$order->type}}</td>
+                                            <td>: {{$order->type_interior->name}} Interior</td>
                                         </tr>
                                         <tr>
                                             <td>Style Interior</td>
-                                            <td>: Modern, Minimalis</td>
+                                            <td>: {{$order->styles_interiors}}</td>
                                         </tr>
                                         <tr>
                                             <td>Budget</td>
@@ -103,39 +103,41 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group mt-3">
-                                    <label for="progress" class="form-label">Progress (%)</label>
-                                    <input type="number" name="progress" class="form-control @error('progress') is-invalid @enderror" value="{{ $order->progress }}" id="progress" required>
-                                    @error('progress')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label for="results" class="form-label">Results</label>
-                                    <input type="file" id="results" class="dropify" data-height="300" name="results" data-default-file="{{ asset('storage/'.$order->results) }}" data-max-file-size="3M" data-allowed-file-extensions="jpg png jpeg" data-show-errors="true" multiple/>
-                                    @error('results')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @if($order->status !== IS_TERKIRIM)
+                                    <div class="form-group mt-3">
+                                        <label for="progress" class="form-label">Progress (%)</label>
+                                        <input type="number" name="progress" class="form-control @error('progress') is-invalid @enderror" value="{{ $order->progress }}" id="progress" required>
+                                        @error('progress')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label for="results" class="form-label">Desain Terupdate</label>
+                                        <input type="file" id="results" class="dropify" data-height="300" name="results" data-default-file="{{ asset('storage/'.$order->results) }}" data-max-file-size="3M" data-allowed-file-extensions="jpg png jpeg" data-show-errors="true" multiple/>
+                                        @error('results')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                             
-                                <div class="form-group mt-3">
-                                    <label for="documents" class="form-label">More Documents (Link Google Drive)</label>
-                                    <input type="text" name="documents" class="form-control @error('documents') is-invalid @enderror" value="{{$order->documents}}" id="documents">
-                                    @error('documents')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                    <div class="form-group mt-3">
+                                        <label for="documents" class="form-label">More Documents (Link Google Drive)</label>
+                                        <input type="text" name="documents" class="form-control @error('documents') is-invalid @enderror" value="{{$order->documents}}" id="documents">
+                                        @error('documents')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                @endif
                             </div>
                             <hr>
                             <div class="col-12">                           
                                 <table class="table" id="table">
-                                    <h5>RAB interior</h5>
+                                    <h5>Nota Interior</h5>
                                     <thead style="{{($notas == null)? 'display:none' : ''}}">
                                         <tr style="color:rgb(57, 57, 57)">
                                             <th>Nama Barang</th>
@@ -169,7 +171,7 @@
                                 </table>
                                 <button type="button" class="btn btn-outline-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#rabOrderModal">
                                     <i class="bi bi-plus-circle"></i>
-                                    Tambahkan Data RAB
+                                    Tambahkan Data Nota
                                 </button>
                             </div>
                             <div class="text-center">

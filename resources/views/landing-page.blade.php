@@ -204,7 +204,7 @@
           </div>
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
             <div class="member">
-              <img src="{{asset('assets/img/portfolio/empty.png')}}" style="width:200px; height:180px" alt="">
+              <img src="{{asset('assets/img/image_default.png')}}" alt="">
               <h4>Oka Putri</h4>
               <span>Denpasar, Bali</span>
               <p>

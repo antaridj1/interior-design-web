@@ -15,4 +15,9 @@ class Portfolio extends Model
         'image',
         'description'
     ];
+
+    public function type_interior()
+    {
+        return $this->belongsTo(TypeInterior::class, 'type_interior_id');
+    }
 }

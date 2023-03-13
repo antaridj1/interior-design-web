@@ -46,5 +46,9 @@ class CompanyController extends Controller
             // 'favicon' => $image_favicon,
             // 'jumbotron' => $image_jumbotron,
         ]);
+
+        return redirect('employee/company')
+        ->with('status','success')
+        ->with('message','Data berhasil diedit');
     }
 }

@@ -37,8 +37,13 @@
                                     </a>
                                 @endif
                             </div> --}}
-                            <div class="col-12 my-5">
+                            <div class="col-12 mt-3">
                                 <button class="btn btn-primary w-100" type="submit">Login</button>
+                            </div>
+                            <div class="form-group my-5 d-flex justify-content-center">
+                                <a class="small text-center" href="{{ route('register') }}">
+                                    Belum memiliki akun? Klik disini
+                                </a>
                             </div>
                         </form>
                     </div>

@@ -32,7 +32,7 @@
                 @method('patch')
                 <div class="col-12">
                   <div class="form-floating">
-                    <input class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ $portfolio->name}}">
+                    <input class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ $portfolio->name}}" required>
                     <label for="name">Nama Portfolio</label>
                     @error('name')
                         <div class="invalid-feedback">
@@ -59,10 +59,20 @@
                     @enderror
                   </div>
                 </div>
-                
                 <div class="col-12">
                   <div class="form-floating">
-                    <input type="file" class="dropify" data-height="300" name="image" data-default-file="{{ asset('storage/'.$portfolio->image) }}" />
+                    <input class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ $portfolio->description}}" required>
+                    <label for="description">Deskripsi</label>
+                    @error('description')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                  </div>
+              </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="file" class="dropify" data-height="300" name="image" data-default-file="{{ asset('storage/'.$portfolio->image) }}" data-allowed-file-extensions="png jpg jpeg " />
                     <label for="image">Gambar</label>
                     @error('image')
                         <div class="invalid-feedback">
@@ -70,17 +80,6 @@
                         </div>
                     @enderror
                   </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating">
-                      <input class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ $portfolio->description}}" required>
-                      <label for="description">Deskripsi</label>
-                      @error('description')
-                          <div class="invalid-feedback">
-                              {{$message}}
-                          </div>
-                      @enderror
-                    </div>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>

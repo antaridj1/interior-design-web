@@ -23,7 +23,7 @@
             timer: 3000
         }).then(function(dismiss){
             if(dismiss.isDismissed === true){
-                return {{session()->flush()}}
+                return {{session()->forget(['auth','message'])}}
             }
         })
     </script>

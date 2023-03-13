@@ -70,14 +70,15 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, Portfolio $portfolio)
     {
+  
         $request->validate([
             'type_interior_id' => 'required',
             'name' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'image' => 'image|mimes:jpg,png,jpeg',
             'description' => 'required'
         ]);
 
-        if($request->file('image')){
+        if($request->file('image') !== null){
             $image_path = $request->file('image')->store('image', 'public');
         } else {
             $image_path = $portfolio->image;

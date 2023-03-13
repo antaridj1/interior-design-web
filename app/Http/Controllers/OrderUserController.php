@@ -22,9 +22,9 @@ class OrderUserController extends Controller
     {
         $this->middleware('auth:web');
         if (Auth::user() === null){
-            return redirect('login')
-                ->with('auth', 'warning')
-                ->with('message','Anda harus login terlebih dahulu');
+            session()->put('auth', 'warning');
+            session()->put('message','Anda harus login terlebih dahulu');
+            return view('auth.login');
         }
 
     }

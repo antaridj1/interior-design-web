@@ -43,7 +43,18 @@
                 </div>
                 <div class="col-12">
                   <div class="form-floating">
-                    <input type="file" class="dropify" data-height="300" name="image" data-default-file="{{ asset('storage/'.$style_interior->image) }}" />
+                    <input class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ $style_interior->description}}" required>
+                    <label for="description">Deskripsi</label>
+                    @error('description')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                  </div>
+              </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="file" class="dropify" data-height="300" name="image" data-default-file="{{ asset('storage/'.$style_interior->image) }}" data-allowed-file-extensions="png jpg jpeg "/>
                     <label for="image">Gambar</label>
                     @error('image')
                         <div class="invalid-feedback">
@@ -51,17 +62,6 @@
                         </div>
                     @enderror
                   </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating">
-                      <input class="form-control @error('description') is-invalid @enderror" name="description" id="description" value="{{ $style_interior->description}}" required>
-                      <label for="description">Deskripsi</label>
-                      @error('description')
-                          <div class="invalid-feedback">
-                              {{$message}}
-                          </div>
-                      @enderror
-                    </div>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>

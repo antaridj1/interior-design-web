@@ -13,7 +13,7 @@
                 @csrf
                 <div class="row">
                     <h2 class="text-center">Formulir Order</h2>
-                    <input type="hidden" value="" id="admin_phone">
+                    <input type="hidden" value="{{$company->telp}}" id="company_telp">
                     <div class="form-group mt-3">
                         <label for="location" class="form-label">Lokasi</label>
                         <input type="text" name="location" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') }}" id="location" required>
@@ -47,7 +47,7 @@
                         </select>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="room_size" class="form-label">Ukuran Ruangan</label>
+                        <label for="room_size" class="form-label">Ukuran Ruangan (Opsional)</label>
                         <input type="text" name="room_size" class="form-control @error('room_size') is-invalid @enderror" value="{{ old('room_size') }}" id="room_size">
                         @error('room_size')
                             <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                         @enderror
                     </div>
                     <div class="form-group mt-3">
-                        <label for="type" class="form-label col-12">Style Interior Yang Anda Inginkan</label>
+                        <label for="type" class="form-label col-12">Style Interior Yang Anda Inginkan </label>
 
                         <div class="row portfolio portfolio-container" data-aos="fade-up" data-aos-delay="150">
                             @foreach ($styles as $style)
@@ -81,12 +81,17 @@
                     <div class="form-group mt-3">
                         <label for="budget" class="form-label">Kisaran Budget</label>
                         <select class="form-select form-select-lg" aria-label="Default select example" name="budget">
-                            <option value="10-20 juta">10-20 juta</option>
-                            <option value="20-30 juta">20-30 juta</option>
+                            <option value="Belum mengetahui">Belum mengetahui</option>
+                            <option value="10-20 juta">10-25 juta</option>
+                            <option value="25-50 juta">25-50 juta</option>
+                            <option value="50-75 juta">50-75 juta</option>
+                            <option value="10-20 juta">75-100 juta</option>
+                            <option value="100-500 juta">100-500 juta</option>
+                            <option value="500 juta - 1 Miliar">500 juta - 1 Miliar</option>
                         </select>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="started_month" class="form-label">Kapan Proyek Dimulai</label>
+                        <label for="started_month" class="form-label">Perkiraan Proyek Dimulai</label>
                         <input type="month" name="started_month" class="form-control @error('started_month') is-invalid @enderror" value="{{ old('started_month') }}" id="started_month">
                         @error('started_month')
                             <span class="invalid-feedback" role="alert">
@@ -95,7 +100,7 @@
                         @enderror
                     </div>
                     <div class="form-group mt-3">
-                        <label for="detail" class="form-label">Detail Mengenai Interior</label>
+                        <label for="detail" class="form-label">Detail Mengenai Interior (Opsional)</label>
                         <textarea type="textarea" rows="3" name="detail" class="form-control @error('detail') is-invalid @enderror" value="{{ old('detail') }}" id="detail"></textarea>
                         @error('detail')
                             <span class="invalid-feedback" role="alert">
@@ -127,7 +132,7 @@
 <script>
     function kirimPesan(){
         var message = 'Halo, saya sudah mengirim formulir pemesanan design interior pada web. Link : '
-        var str = $('#admin_phone').val()
+        var str = $('#company_telp').val()
         var phone = str.slice(1);
         window.open('https://wa.me/'+phone+'/?text='+message , "_blank");
     }

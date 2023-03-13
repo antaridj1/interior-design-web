@@ -35,9 +35,7 @@ class TypeInteriorController extends Controller
             'name' => 'required',
             'description' => 'required'
         ]);
-
-        $image_path = $request->file('image')->store('image', 'public');
-
+        
         TypeInterior::create([
             'name' => $request->name,
             'description' => $request->description

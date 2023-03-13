@@ -22,7 +22,7 @@ class CompanySeeder extends Seeder
                 'telp' => '081929202666',
                 'email' => 'semaramuliaofficial@gmail.com',
                 'description' => 'Jasa Desain Interior & Produksi Interior berlokasi di BALI',
-                'logo' => 'image.jpg',
+                'logo' => 'image_default.png',
             ]
         ];
 

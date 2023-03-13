@@ -4,6 +4,7 @@
         <th class="text-center" scope="col">No</th>
         <th class="text-center" scope="col">Gambar</th>
         <th class="text-center" scope="col">Nama</th>
+        <th class="text-center" scope="col">Tipe Interior</th>
         <th class="text-center" scope="col">Deskripsi</th>
         <th class="text-center" scope="col">Aksi</th>
     </tr>
@@ -14,6 +15,7 @@
             <th class="text-center" scope="row">{{$loop->iteration}}</th>
             <td class="text-center"><img src="{{ asset('storage/'.$portfolio->image) }}" width="200px" alt=""></td>
             <td class="text-center">{{$portfolio->name}}</td>
+            <td class="text-center">{{$portfolio->type_interior->name}} Interior</td>
             <td class="text-center">{{$portfolio->description}}</td>
             <td class="text-center">
                 <a href="{{route('employee.portfolio.edit',$portfolio->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a>

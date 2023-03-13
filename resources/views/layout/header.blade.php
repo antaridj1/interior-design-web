@@ -1,7 +1,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{asset('assets/img/testlogo.png')}}" width="50%" alt="">
+        <img src="{{asset('assets/img/logo.png')}}" alt="">
+        <h5 class="my-2" style="color:black"><b>Semara Mulia </b></h5>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -15,12 +16,6 @@
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>My Project</h6>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{ route('employee.profile.editEmployee') }}">
                 <i class="bi bi-person"></i>

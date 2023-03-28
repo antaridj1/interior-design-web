@@ -22,6 +22,10 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->today){
+            $orders = Order::whereDate('created_at', Carbon::today())->get();
+        }
+        
         if($request->status){
             $orders = Order::where('status', $request->status)->get();
         } else {

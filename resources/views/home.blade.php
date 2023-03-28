@@ -31,7 +31,7 @@
                       <h5 class="card-title mb-0">Halo, {{auth()->guard('employee')->user()->name}} </h5>
                       <span class="mt-0">Hari ini Anda memiliki 2 orderan baru, periksa sekarang!</span>
                       <div class="col-4 mt-3">
-                        <a href="" class="btn btn-outline-primary"> <i class="bi bi-journal-text"></i> Lihat Order</a>
+                        <a href="{{route('employee.order.index')}}?today" class="btn btn-outline-primary"> <i class="bi bi-journal-text"></i> Lihat Order</a>
                       </div>
           
                     </div>

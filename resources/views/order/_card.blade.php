@@ -1,4 +1,4 @@
-
+@if($order !== null)
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
@@ -137,3 +137,11 @@
             </div>
         </div>
     </div>
+
+@else 
+<div class="card">
+    <div class="card-body">
+        <p class="text-center m-2">Tidak ada data</p>
+    </div>
+</div>
+@endif

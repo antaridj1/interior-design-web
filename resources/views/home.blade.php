@@ -22,25 +22,31 @@
         
         <!-- Left side columns -->
         <div class="col-lg-12">
-          {{-- <div class="row">
+          <div class="row">
             <div class="col-xxl-12 col-md-12">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-8 col-sm-12">
                       <h5 class="card-title mb-0">Halo, {{auth()->guard('employee')->user()->name}} </h5>
-                      <span class="mt-0">Ada pesanan masuk, periksa sekarang!</span>
+                      <span class="mt-0">Hari ini Anda memiliki 2 orderan baru, periksa sekarang!</span>
+                      <div class="col-4 mt-3">
+                        <a href="" class="btn btn-outline-primary"> <i class="bi bi-journal-text"></i> Lihat Order</a>
+                      </div>
+          
                     </div>
-                    <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
+                   
                     
-                          <a href="" class="btn btn-primary rounded-pill"> <i class="bi bi-journal-text"></i> Lihat Laporan</a>
+                    <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
+                      <img src="{{asset('asset/img/payment2.svg')}}" width="75%" alt="">
+                    
 
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div> --}}
+          </div>
           <div class="row">
             @if (role('admin'))
               <div class="col-4">

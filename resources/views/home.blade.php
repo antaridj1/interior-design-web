@@ -29,16 +29,16 @@
                   <div class="row">
                     <div class="col-md-8 col-sm-12">
                       <h5 class="card-title mb-0">Halo, {{auth()->guard('employee')->user()->name}} </h5>
-                      <span class="mt-0">Hari ini Anda memiliki 2 orderan baru, periksa sekarang!</span>
+                      <span class="mt-0">Hari ini Anda memiliki {{$jumlah_today}} orderan baru, periksa sekarang!</span>
                       <div class="col-4 mt-3">
-                        <a href="{{route('employee.order.index')}}?today" class="btn btn-outline-primary"> <i class="bi bi-journal-text"></i> Lihat Order</a>
+                        <a href="{{route('employee.order.index')}}?filter=today" class="btn btn-outline-primary"> <i class="bi bi-journal-text"></i> Lihat Order</a>
                       </div>
           
                     </div>
                    
                     
                     <div class="col-md-4 mt-3 col-sm-12 d-flex align-items-center justify-content-end">
-                      <img src="{{asset('asset/img/payment2.svg')}}" width="75%" alt="">
+                      <img src="{{asset('asset/img/payment2.svg')}}" width="250px" alt="">
                     
 
                     </div>

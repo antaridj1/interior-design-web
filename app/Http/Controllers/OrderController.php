@@ -22,14 +22,22 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->today){
-            $orders = Order::whereDate('created_at', Carbon::today())->get();
-        }
-        
-        if($request->status){
-            $orders = Order::where('status', $request->status)->get();
+        if(roleController('admin')){
+            if($request->status){
+                $orders = Order::where('status', $request->status)->get();
+            } elseif($request->filter === 'today'){
+                $orders = Order::whereDate('created_at', Carbon::today())->get();
+            } elseif ($request->filter !== 'today' && !$request->status) {
+                 $orders = Order::all();
+            }
         } else {
-             $orders = Order::all();
+            if($request->status){
+                $orders = Order::where('employee_id', Auth::id())->where('status', $request->status)->get();
+            } elseif($request->filter === 'today'){
+                $orders = Order::where('employee_id', Auth::id())->whereDate('created_at', Carbon::today())->get();
+            } elseif ($request->filter !== 'today' && !$request->status) {
+                 $orders = Order::where('employee_id', Auth::id())->get();
+            }
         }
        
         return view('order.index', compact('orders'));
@@ -203,7 +211,7 @@ class OrderController extends Controller
     {
         $order->delete();
 
-        return redirect('order')
+        return back()
             ->with('status','success')
             ->with('message','order berhasil terhapus');
     }

@@ -36,7 +36,7 @@
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Order <span>| Per 2023</span></h5>
+                    <h5 class="card-title">Order <span>| {{request('filter') == 'today'? 'Hari Ini' : ' Per 2023'}}</span></h5>
                   </div>
                  @include('order._table')
                 </div>

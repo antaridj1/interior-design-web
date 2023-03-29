@@ -29,18 +29,20 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   
         if(roleController('admin')){
             $jumlah_masuk = Order::where('status', 0)->count();
             $jumlah_diproses = Order::where('status', 1)->count();
             $jumlah_selesai = Order::where('status', 2)->count();
+            $jumlah_today = Order::whereDate('created_at', Carbon::today())->count();
             $orders = Order::whereDate('created_at', Carbon::today())->get();
-            return view('home', compact('jumlah_masuk' ,'jumlah_diproses', 'jumlah_selesai','orders'));
+            return view('home', compact('jumlah_masuk' ,'jumlah_diproses', 'jumlah_selesai','jumlah_today','orders'));
         } else {
             $jumlah_diproses = Order::where('employee_id', Auth::id())->where('status', 1)->count();
             $jumlah_selesai = Order::where('employee_id', Auth::id())->where('status', 2)->count();
+            $jumlah_today = Order::where('employee_id',Auth::id())->whereDate('created_at', Carbon::today())->count();
             $order = Order::where('employee_id',Auth::id())->latest()->take(1)->first();
-            return view('home', compact('jumlah_diproses', 'jumlah_selesai','order'));
+            return view('home', compact('jumlah_diproses', 'jumlah_selesai','jumlah_today','order'));
         }
     }
 

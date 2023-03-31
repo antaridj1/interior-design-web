@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="mb-4">
-                            <p><b>Link Dokumen</b></p>
+                            <p><b>Link Dokumenn</b></p>
                             <p><a href="{{$order->documents}}">{{$order->documents}}</a></p>
                         </div>
                         <div>

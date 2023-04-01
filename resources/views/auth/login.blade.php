@@ -11,7 +11,7 @@
                     <div class="col-lg-6 mt-5">
                         <form method="POST" action="{{ route('login') }}" role="form" class="php-email-form">
                             @csrf
-                            <h2 class="text-center">Login</h2>
+                            <h2 class="text-center">Loginn</h2>
                             <div class="form-group mt-3">
                                 <label for="yourEmail" class="form-label">Email</label>
                                 <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="yourEmail" placeholder="Masukkan alamat email" required>

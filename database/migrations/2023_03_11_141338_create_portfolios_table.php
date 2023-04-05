@@ -20,6 +20,11 @@ class CreatePortfoliosTable extends Migration
             $table->string('image');
             $table->text('description');
             $table->timestamps();
+
+            $table->foreign('type_interior_id')
+            ->references('id')
+            ->on('type_interiors')
+            ->onDelete('cascade');
         });
     }
 

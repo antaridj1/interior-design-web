@@ -21,6 +21,11 @@ class CreateNotasTable extends Migration
             $table->integer('price');
             $table->integer('total');
             $table->timestamps();
+
+            $table->foreign('order_id')
+            ->references('id')
+            ->on('orders')
+            ->onDelete('cascade');
         });
     }
 

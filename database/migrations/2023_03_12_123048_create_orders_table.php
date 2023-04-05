@@ -33,6 +33,21 @@ class CreateOrdersTable extends Migration
             $table->string('bukti_bayar')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+
+            $table->foreign('type_interior_id')
+            ->references('id')
+            ->on('type_interiors')
+            ->onDelete('cascade');
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+
+            $table->foreign('employee_id')
+            ->references('id')
+            ->on('employees')
+            ->onDelete('cascade');
         });
     }
 

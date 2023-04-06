@@ -9,7 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <link rel="shortcut icon" href="{{asset('asset/img/logo-bri.jpg')}}">
+  <link rel="shortcut icon" href="{{asset('assets/img/logo.png')}}">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

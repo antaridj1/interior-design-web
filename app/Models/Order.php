@@ -31,6 +31,7 @@ class Order extends Model
         'subtotal',
         'documents',
         'bukti_bayar',
+        'komentar_customer',
         'status',
     ];
 

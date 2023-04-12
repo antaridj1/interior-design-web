@@ -38,6 +38,7 @@ Route::middleware('auth:web')->group(function(){
         Route::resource('/', OrderUserController::class)->parameters([
             '' => 'order'
         ]); 
+        Route::patch('{order}/update-komentar', [OrderUserController::class, 'updateKomentar'])->name('updateKomentar');
         Route::patch('{order}/upload', [OrderUserController::class, 'uploadBuktiBayar'])->name('uploadBuktiBayar');
         Route::get('nota/{order}', [OrderUserController::class, 'printNota'])->name('printNota');
     });

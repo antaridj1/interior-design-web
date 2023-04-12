@@ -81,13 +81,13 @@
                     <div class="form-group mt-3">
                         <label for="budget" class="form-label">Kisaran Budget</label>
                         <select class="form-select form-select-lg" aria-label="Default select example" name="budget">
-                            <option value="Belum mengetahui">Belum mengetahui</option>
-                            <option value="10-20 juta">10-25 juta</option>
-                            <option value="25-50 juta">25-50 juta</option>
-                            <option value="50-75 juta">50-75 juta</option>
-                            <option value="10-20 juta">75-100 juta</option>
-                            <option value="100-500 juta">100-500 juta</option>
-                            <option value="500 juta - 1 Miliar">500 juta - 1 Miliar</option>
+                            <option value="">Belum mengetahui</option>
+                            <option value="10-25 juta (max 2x revisi)">10-25 juta (max 2x revisi)</option>
+                            <option value="25-50 juta (max 3x revisi)">25-50 juta (max 3x revisi)</option>
+                            <option value="50-75 juta (max 4x revisi)">50-75 juta (max 4x revisi)</option>
+                            <option value="10-20 juta (max 5x revisi)">75-100 juta (max 5x revisi)</option>
+                            <option value="100-500 juta (unlimited revisi)">100-500 juta (unlimited revisi)</option>
+                            <option value="500 juta - 1 Miliar (unlimited revisi)">500 juta - 1 Miliar (unlimited revisi)</option>
                         </select>
                     </div>
                     <div class="form-group mt-3">

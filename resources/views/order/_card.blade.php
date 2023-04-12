@@ -72,12 +72,17 @@
                         @if(role('admin'))
                             <div class="mb-4">
                                 <p><b>Nota</b></p>
-                                <button class="btn btn-sm {{$order->nota->count() !== 0 ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
-                                    data-bs-toggle="modal" data-bs-target="#notaOrderModal_{{$order->id}}"
-                                    {{$order->nota->count() !== 0 ? '' : 'disabled'}}>
-                                    <i class="bi bi-box-arrow-up-right"></i>
-                                    Lihat Nota
-                                </button>
+                                <div class="d-flex justify-content-start">
+                                    <button class="btn btn-sm {{$order->nota->count() !== 0 ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
+                                        data-bs-toggle="modal" data-bs-target="#notaOrderModal_{{$order->id}}"
+                                        {{$order->nota->count() !== 0 ? '' : 'disabled'}}>
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                        Lihat Nota
+                                    </button>
+                                    @if($order->nota->count() !== 0 && isOverBudget($order->budget, $order->subtotal) === true)
+                                        <span class="badge p-2 rounded-pill bg-danger mx-2">Subtotal Nota Melebihi Budget</span>
+                                    @endif
+                                </div>
                             </div>
                             <div class="mb-4">
                                 <p><b>Bukti Pembayaran</b></p>
@@ -104,6 +109,10 @@
                         <div>
                             <p><b>Gambar Terupdate</b></p>
                             <img src="{{ asset('storage/'.$order->results) }}" target="_blank" width="100%" alt="">
+                        </div>
+                        <div>
+                            <p><b>Komentar Customer</b></p>
+                            <p>{{$order->komentar_customer?? 'Tidak ada komentar'}}</p>
                         </div>
                     @endif
                     

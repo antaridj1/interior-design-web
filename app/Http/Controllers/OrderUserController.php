@@ -146,4 +146,13 @@ class OrderUserController extends Controller
             ->with('status','success')
             ->with('message','Bukti Pembayaran Berhasil Diupload');
     }
+
+    public function updateKomentar(Request $request, Order $order){
+        $order->update([
+            'komentar_customer' =>  $request->komentar_customer
+        ]);
+        return back()
+            ->with('status','success')
+            ->with('message','Komentar telah terkirim');
+    }
 }

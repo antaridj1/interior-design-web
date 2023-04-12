@@ -53,12 +53,17 @@
                 @if($order->status !== IS_TERKIRIM)
                     <div class="mb-4">
                         <p><b>Nota</b></p>
-                        <button class="btn btn-sm {{$order->nota->count() !== 0 ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
-                            data-bs-toggle="modal" data-bs-target="#notaOrderModal_{{$order->id}}"
-                            {{$order->nota->count() !== 0 ? '' : 'disabled'}}>
-                            <i class="bi bi-box-arrow-up-right"></i>
-                            Lihat Nota
-                        </button>
+                        <div class="d-flex justify-content-start">
+                            <button class="btn btn-sm {{$order->nota->count() !== 0 ? 'btn-outline-primary' : 'btn-outline-secondary'}}"
+                                data-bs-toggle="modal" data-bs-target="#notaOrderModal_{{$order->id}}"
+                                {{$order->nota->count() !== 0 ? '' : 'disabled'}}>
+                                <i class="bi bi-box-arrow-up-right"></i>
+                                Lihat Nota
+                            </button>
+                            @if($order->nota->count() !== 0 && isOverBudget($order->budget, $order->subtotal) === true)
+                                <span class="badge p-2 rounded-pill bg-danger mx-2">Subtotal Nota Melebihi Budget</span>
+                            @endif
+                        </div>
                     </div>
                     @if($order->bukti_bayar !== null)
                         <div class="mb-4">
@@ -82,6 +87,24 @@
                     <div>
                         <p><b>Gambar Terupdate</b></p>
                         <img src="{{ asset('storage/'.$order->results) }}" target="_blank" width="100%" alt="">
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ route('orderUser.updateKomentar', $order->id) }}">
+                            @csrf
+                            @method('patch')
+                            <div class="form-group mt-3">
+                                <label for="komentar_customer" class="form-label">Komentar (Opsional)</label>
+                                <textarea type="textarea" rows="3" name="komentar_customer" class="form-control @error('komentar_customer') is-invalid @enderror" id="komentar_customer">{{$order->komentar_customer}}</textarea>
+                                @error('komentar_customer')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-3 my-2">
+                                <button class="btn btn-sm btn-primary" type="submit">Kirim Komentar</button>
+                            </div>
+                        </form>
                     </div>
                 @endif
             </div>
